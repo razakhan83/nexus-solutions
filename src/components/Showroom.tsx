@@ -31,7 +31,7 @@ export function Showroom() {
   if (isLoading) {
     return (
       <section id="showroom" className="bg-white py-24 sm:py-32 relative border-t border-zinc-200 min-h-[600px] flex items-center justify-center">
-        <Loader2 className="h-10 w-10 animate-spin text-purple-600" />
+        <Loader2 className="h-10 w-10 animate-spin text-primary" />
       </section>
     );
   }
@@ -44,40 +44,45 @@ export function Showroom() {
     <section id="showroom" className="bg-white py-24 sm:py-32 relative overflow-hidden border-t border-zinc-200">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
         
-        <div className="flex flex-row items-center justify-between gap-4 md:gap-12 mb-10 md:mb-16">
-          <motion.div
-            className="w-[60%] md:w-1/2 text-left"
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+        {/* Header Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center mb-10 md:mb-16 max-w-7xl mx-auto">
+          
+          {/* Illustration on Left */}
+          <motion.div 
+            className="relative w-full h-[250px] sm:h-[300px] lg:h-[350px] bg-primary/5 rounded-2xl flex items-center justify-center border border-primary/10"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           >
-            <h2 className="text-sm font-bold text-purple-600 uppercase tracking-widest mb-3">Case Studies</h2>
-            <p className="text-4xl md:text-5xl font-extrabold tracking-tighter text-zinc-900 mb-4 leading-[1.1]">
-              Proven Delivery <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">at Scale</span>
+             <Image src="/undraw_charts_31si.svg" alt="Case Studies" fill className="object-contain p-8" />
+          </motion.div>
+
+          {/* Heading on Right */}
+          <motion.div
+            className="text-left"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <h2 className="text-xs md:text-sm font-bold text-primary uppercase tracking-[0.2em] mb-3">Case Studies</h2>
+            <p className="text-3xl md:text-4xl font-heading font-bold tracking-tight text-foreground lg:text-5xl leading-tight mb-4 md:mb-6">
+              Proven Delivery <span className="text-primary">at Scale</span>
             </p>
-            <p className="mt-2 md:mt-4 text-sm md:text-lg text-zinc-600 max-w-lg hidden sm:block">
+            <p className="text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed">
               See how we've helped enterprises transform their digital infrastructure and drive measurable revenue growth.
             </p>
           </motion.div>
 
-          <motion.div 
-            className="w-[40%] md:w-1/2 relative h-[120px] md:h-[200px] lg:h-[250px] w-full"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-             <Image src="/undraw_build-mode_aa78.svg" alt="Proven Delivery" fill className="object-contain md:object-right" />
-          </motion.div>
         </div>
 
         {/* Corporate Split Panel Layout */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           className="mt-16 bg-white border border-zinc-200 rounded-xl overflow-hidden shadow-sm flex flex-col lg:flex-row min-h-[550px]"
         >
           
@@ -96,7 +101,7 @@ export function Showroom() {
                     key={client.id}
                     onClick={() => setActiveClient(client)}
                     className={`relative w-full text-left px-5 py-4 rounded-lg transition-all border ${
-                      isActive ? "border-purple-200 text-purple-900 shadow-sm bg-purple-50" : "border-transparent text-zinc-600 hover:text-purple-700 hover:bg-zinc-100 hover:translate-x-1"
+                      isActive ? "border-primary/20 text-primary shadow-sm bg-primary/5" : "border-transparent text-zinc-600 hover:text-primary hover:bg-zinc-100 hover:translate-x-1"
                     }`}
                   >
                     <span className="relative z-10 font-medium text-lg block">{client.name}</span>
@@ -121,12 +126,12 @@ export function Showroom() {
                 {/* Header */}
                 <div className="flex justify-between items-start mb-10">
                   <div>
-                    <span className="px-3 py-1 text-sm font-mono font-medium bg-purple-50 text-purple-700 rounded-md border border-purple-200">
+                    <span className="px-3 py-1 text-sm font-mono font-medium bg-primary/5 text-primary rounded-md border border-primary/20">
                       {activeClient.tag}
                     </span>
                     <h3 className="text-3xl font-bold text-zinc-900 mt-4">{activeClient.name}</h3>
                   </div>
-                  <Button variant="outline" className="hidden sm:flex rounded-md border-purple-200 text-purple-700 hover:text-white hover:bg-purple-600 hover:shadow-lg hover:-translate-y-1 transition-all h-10 px-6 font-medium text-base" render={<a href={activeClient.link} target="_blank" rel="noopener noreferrer" />} nativeButton={false}>
+                  <Button variant="outline" className="hidden sm:flex rounded-md border-primary/20 text-primary hover:text-white hover:bg-primary hover:shadow-lg hover:-translate-y-1 transition-all h-10 px-6 font-medium text-base" render={<a href={activeClient.link} target="_blank" rel="noopener noreferrer" />} nativeButton={false}>
                       View Case Study <ArrowUpRight className="ml-2 h-5 w-5" />
                   </Button>
                 </div>
@@ -142,8 +147,8 @@ export function Showroom() {
                     <h4 className="text-sm font-bold text-zinc-400 uppercase tracking-widest mt-8 mb-3">Our Implementation</h4>
                     <ul className="space-y-4">
                       {activeClient.delivered.map((item: string, i: number) => (
-                        <li key={i} className="flex items-start text-base text-zinc-700 hover:text-purple-700 transition-colors">
-                          <CheckCircle2 className="size-5 text-purple-600 mr-3 mt-0.5 shrink-0" />
+                        <li key={i} className="flex items-start text-base text-zinc-700 hover:text-primary transition-colors">
+                          <CheckCircle2 className="size-5 text-primary mr-3 mt-0.5 shrink-0" />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -151,8 +156,8 @@ export function Showroom() {
                   </div>
 
                   <div className="flex flex-col justify-start">
-                    <Card className="bg-purple-50/50 border-purple-100 hover:border-purple-300 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-8 flex flex-col items-center justify-center text-center shadow-none rounded-xl h-full">
-                      <span className="text-5xl md:text-6xl font-bold text-purple-700 tracking-tight">
+                    <Card className="bg-primary/5 border-primary/10 hover:border-primary/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-8 flex flex-col items-center justify-center text-center shadow-none rounded-xl h-full">
+                      <span className="text-5xl md:text-6xl font-bold text-primary tracking-tight">
                         {activeClient.stat}
                       </span>
                       <span className="text-zinc-600 mt-3 text-base font-medium">
@@ -160,7 +165,7 @@ export function Showroom() {
                       </span>
                     </Card>
                     
-                    <Button className="mt-6 sm:hidden w-full bg-purple-600 hover:bg-purple-700 text-white font-medium h-12 text-base" render={<a href={activeClient.link} target="_blank" rel="noopener noreferrer" />} nativeButton={false}>
+                    <Button className="mt-6 sm:hidden w-full bg-primary hover:bg-primary text-white font-medium h-12 text-base" render={<a href={activeClient.link} target="_blank" rel="noopener noreferrer" />} nativeButton={false}>
                         View Case Study <ArrowUpRight className="ml-2 h-5 w-5" />
                     </Button>
                   </div>

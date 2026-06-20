@@ -124,7 +124,7 @@ export default function AdminPage() {
             
             {isLoading ? (
               <div className="flex items-center justify-center p-12 bg-white rounded-xl border border-zinc-200">
-                <Loader2 className="h-8 w-8 animate-spin text-purple-600" />
+                <Loader2 className="h-8 w-8 animate-spin text-primary" />
               </div>
             ) : projects.length === 0 ? (
               <div className="p-12 text-center bg-white rounded-xl border border-zinc-200 text-zinc-500">
@@ -136,7 +136,7 @@ export default function AdminPage() {
                   <Card key={project.id} className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-6 bg-white shadow-sm hover:shadow-md transition-shadow">
                     <div className="mb-4 sm:mb-0">
                       <div className="flex items-center gap-3 mb-1">
-                        <span className="px-2 py-1 text-xs font-mono font-medium bg-purple-50 text-purple-700 rounded border border-purple-200">
+                        <span className="px-2 py-1 text-xs font-mono font-medium bg-primary/5 text-primary rounded border border-primary/20">
                           {project.tag}
                         </span>
                       </div>
@@ -201,7 +201,7 @@ export default function AdminPage() {
                     <Input required value={image} onChange={(e) => setImage(e.target.value)} placeholder="/undraw_charts_31si.svg" />
                   </div>
 
-                  <Button type="submit" disabled={isSubmitting} className="w-full bg-purple-600 hover:bg-purple-700 text-white mt-4">
+                  <Button type="submit" disabled={isSubmitting} className="w-full bg-primary hover:bg-primary text-white mt-4">
                     {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Plus className="h-4 w-4 mr-2" />}
                     Add Project
                   </Button>

@@ -13,19 +13,13 @@ export function Header() {
   const [activeLink, setActiveLink] = useState("");
 
   useEffect(() => {
-    // Set initial
     setActiveLink(pathname + window.location.hash);
-
-    const handleHashChange = () => {
-      setActiveLink(window.location.pathname + window.location.hash);
-    };
-
+    const handleHashChange = () => setActiveLink(window.location.pathname + window.location.hash);
     const handleScroll = () => {
       if (pathname === "/") {
         const contactEl = document.getElementById("contact");
         if (contactEl) {
           const rect = contactEl.getBoundingClientRect();
-          // If contact section is in the upper half of the viewport
           if (rect.top <= window.innerHeight / 1.5) {
             setActiveLink("/#contact");
           } else {
@@ -37,8 +31,6 @@ export function Header() {
 
     window.addEventListener("hashchange", handleHashChange);
     window.addEventListener("scroll", handleScroll, { passive: true });
-    
-    // Initial check on mount
     setTimeout(handleScroll, 100);
 
     return () => {
@@ -53,86 +45,113 @@ export function Header() {
   };
 
   const getLinkClass = (href: string, isMobile = false) => {
-    // Simple exact match logic
     const isActive = activeLink === href || (href === "/" && activeLink === "");
-    const baseSize = isMobile ? "text-base block w-full" : "text-sm";
-    return `${baseSize} font-medium transition-colors ${
-      isActive ? "text-purple-600 font-bold" : "text-zinc-600 hover:text-purple-600"
+    const baseSize = isMobile ? "text-3xl md:text-5xl font-heading tracking-tight block w-full py-4" : "text-xs uppercase tracking-widest";
+    return `${baseSize} transition-all duration-300 relative group overflow-hidden ${
+      isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
     }`;
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-zinc-200 bg-white/80 backdrop-blur-md text-zinc-900 shadow-sm">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
-        
-        {/* Logo */}
-        <div className="flex items-center gap-3">
-          <span className="text-xl font-bold tracking-tight text-zinc-900">Logo</span>
-        </div>
-        
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex gap-10">
-          <Link href="/" onClick={() => handleLinkClick("/")} className={getLinkClass("/")}>
-            Home
-          </Link>
-          <Link href="/services" onClick={() => handleLinkClick("/services")} className={getLinkClass("/services")}>
-            Services
-          </Link>
-          <Link href="/portfolio" onClick={() => handleLinkClick("/portfolio")} className={getLinkClass("/portfolio")}>
-            Portfolio
-          </Link>
-          <Link href="/#contact" onClick={() => handleLinkClick("/#contact")} className={getLinkClass("/#contact")}>
-            Contact
-          </Link>
-        </nav>
+    <>
+      <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur-sm border-b border-border/40 text-foreground transition-all duration-500">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
+          
+          {/* Logo */}
+          <div className="flex items-center gap-3">
+            <span className="text-xl font-heading font-bold tracking-tighter uppercase">KG.</span>
+          </div>
+          
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex gap-12 items-center">
+            <Link href="/" onClick={() => handleLinkClick("/")} className={getLinkClass("/")}>
+              Home
+            </Link>
+            <Link href="/services" onClick={() => handleLinkClick("/services")} className={getLinkClass("/services")}>
+              Services
+            </Link>
+            <Link href="/portfolio" onClick={() => handleLinkClick("/portfolio")} className={getLinkClass("/portfolio")}>
+              Portfolio
+            </Link>
+            <Link href="/#contact" onClick={() => handleLinkClick("/#contact")} className={getLinkClass("/#contact")}>
+              Contact
+            </Link>
+          </nav>
 
-        {/* Desktop CTA */}
-        <div className="hidden md:flex items-center gap-4">
-          <Button render={<a href="#contact" />} nativeButton={false} className="bg-purple-600 text-white hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-600/30 transition-all text-sm px-5 h-9 rounded-md">
-            Get Started
-          </Button>
-        </div>
+          {/* Desktop CTA */}
+          <div className="hidden md:flex items-center">
+            <Button render={<a href="#contact" />} nativeButton={false} variant="default" className="uppercase tracking-widest text-xs px-8 min-w-[140px]">
+              Engage
+            </Button>
+          </div>
 
-        {/* Mobile Hamburger */}
-        <div className="md:hidden flex items-center">
-          <button 
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-zinc-600 hover:text-zinc-900"
-          >
-            {isMobileMenuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
-          </button>
+          {/* Mobile Hamburger */}
+          <div className="md:hidden flex items-center z-50">
+            <button 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="flex items-center justify-center size-12 text-foreground"
+              aria-label="Toggle Menu"
+            >
+              {isMobileMenuOpen ? <X strokeWidth={1} className="size-8" /> : <Menu strokeWidth={1} className="size-8" />}
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t border-zinc-200 overflow-hidden shadow-lg"
+            initial={{ opacity: 0, y: "-100%" }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: "-100%" }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 z-40 bg-background flex flex-col justify-center px-6 pt-20 pb-12 overflow-y-auto"
           >
-            <div className="flex flex-col px-6 py-6 space-y-6">
-              <Link onClick={() => handleLinkClick("/")} href="/" className={getLinkClass("/", true)}>
-                Home
-              </Link>
-              <Link onClick={() => handleLinkClick("/services")} href="/services" className={getLinkClass("/services", true)}>
-                Services
-              </Link>
-              <Link onClick={() => handleLinkClick("/portfolio")} href="/portfolio" className={getLinkClass("/portfolio", true)}>
-                Portfolio
-              </Link>
-              <Link onClick={() => handleLinkClick("/#contact")} href="/#contact" className={getLinkClass("/#contact", true)}>
-                Contact
-              </Link>
-              <Button render={<a href="/#contact" />} onClick={() => setIsMobileMenuOpen(false)} nativeButton={false} className="w-full bg-purple-600 text-white hover:bg-purple-700 transition-all text-base h-11 rounded-md shadow-md shadow-purple-600/20">
-                Get Started
-              </Button>
+            <div className="flex flex-col space-y-6 mt-12 mb-auto">
+              <div className="overflow-hidden">
+                <motion.div initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.1, duration: 0.5 }}>
+                  <Link onClick={() => handleLinkClick("/")} href="/" className={getLinkClass("/", true)}>
+                    Home
+                  </Link>
+                </motion.div>
+              </div>
+              <div className="overflow-hidden">
+                <motion.div initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.15, duration: 0.5 }}>
+                  <Link onClick={() => handleLinkClick("/services")} href="/services" className={getLinkClass("/services", true)}>
+                    Services
+                  </Link>
+                </motion.div>
+              </div>
+              <div className="overflow-hidden">
+                <motion.div initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2, duration: 0.5 }}>
+                  <Link onClick={() => handleLinkClick("/portfolio")} href="/portfolio" className={getLinkClass("/portfolio", true)}>
+                    Portfolio
+                  </Link>
+                </motion.div>
+              </div>
+              <div className="overflow-hidden">
+                <motion.div initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.25, duration: 0.5 }}>
+                  <Link onClick={() => handleLinkClick("/#contact")} href="/#contact" className={getLinkClass("/#contact", true)}>
+                    Contact
+                  </Link>
+                </motion.div>
+              </div>
             </div>
+            
+            <motion.div 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="mt-12 w-full"
+            >
+              <Button render={<a href="/#contact" />} onClick={() => setIsMobileMenuOpen(false)} nativeButton={false} className="w-full text-sm uppercase tracking-widest">
+                Start a Project
+              </Button>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }

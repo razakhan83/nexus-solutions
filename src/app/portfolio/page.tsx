@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
@@ -73,77 +73,81 @@ const projects = [
 
 export default function PortfolioPage() {
   return (
-    <main className="min-h-screen bg-zinc-50 text-zinc-950 selection:bg-purple-900 selection:text-white">
+    <main className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
       <Header />
       
-      <section className="pt-24 pb-12 sm:pt-32 sm:pb-16 bg-white border-b border-zinc-200">
+      <section className="pt-0 pb-8 sm:pb-12 bg-muted/10 border-b border-border/40">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col items-center"
           >
-            <h1 className="text-5xl font-bold tracking-tight text-zinc-900 sm:text-7xl mb-6">
+            <div className="relative w-full max-w-[200px] sm:max-w-[250px] h-[120px] sm:h-[160px] mb-6 sm:mb-8">
+              <Image src="/undraw_website-setup_o2zf.svg" alt="Our Portfolio" fill className="object-contain" priority />
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-heading font-bold tracking-tight text-foreground mb-4 sm:mb-6">
               Our Portfolio
             </h1>
-            <p className="text-xl leading-relaxed text-zinc-600 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-muted-foreground max-w-2xl mx-auto">
               Explore how we have engineered scalable digital infrastructure and high-growth campaigns for enterprises across the globe.
             </p>
           </motion.div>
         </div>
       </section>
 
-      <section className="py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-16">
+      <section className="pt-8 sm:pt-16 pb-16 sm:pb-24 lg:pb-32 bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-10 lg:gap-16">
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: index * 0.1 }}
               >
-                <Card className="bg-white border border-zinc-200 shadow-sm hover:shadow-xl hover:border-purple-200 transition-all duration-300 rounded-xl overflow-hidden flex flex-col lg:flex-row group">
+                <Card className="bg-background border border-border/50 shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 rounded-2xl overflow-hidden flex flex-col lg:flex-row group">
                   
                   {/* Left content */}
-                  <div className="p-10 lg:w-2/3 flex flex-col justify-center">
-                    <span className="px-3 py-1 text-sm font-mono font-medium bg-purple-50 text-purple-700 rounded-md border border-purple-200 self-start mb-6">
+                  <div className="p-6 sm:p-8 lg:p-10 lg:w-2/3 flex flex-col justify-center">
+                    <span className="px-3 py-1 text-xs sm:text-sm font-mono font-semibold bg-primary/5 text-primary rounded-md border border-primary/10 self-start mb-4 sm:mb-6">
                       {project.tag}
                     </span>
-                    <h3 className="text-4xl font-bold text-zinc-900 mb-6">{project.name}</h3>
+                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground mb-4 sm:mb-6">{project.name}</h3>
                     
-                    <h4 className="text-sm font-bold text-zinc-400 uppercase tracking-widest mb-3">Business Challenge</h4>
-                    <p className="text-zinc-600 leading-relaxed text-lg mb-8">
+                    <h4 className="text-xs sm:text-sm font-bold text-muted-foreground uppercase tracking-widest mb-2 sm:mb-3">Business Challenge</h4>
+                    <p className="text-muted-foreground leading-relaxed text-sm sm:text-base lg:text-lg mb-6 sm:mb-8">
                       {project.challenge}
                     </p>
 
-                    <h4 className="text-sm font-bold text-zinc-400 uppercase tracking-widest mb-3">Our Implementation</h4>
-                    <ul className="space-y-4 mb-8">
+                    <h4 className="text-xs sm:text-sm font-bold text-muted-foreground uppercase tracking-widest mb-2 sm:mb-3">Our Implementation</h4>
+                    <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                       {project.delivered.map((item, i) => (
-                        <li key={i} className="flex items-start text-lg text-zinc-700">
-                          <CheckCircle2 className="size-6 text-purple-600 mr-3 shrink-0" />
+                        <li key={i} className="flex items-start text-sm sm:text-base lg:text-lg text-foreground/80 font-medium">
+                          <div className="size-2 rounded-full bg-primary mt-2 mr-3 sm:mr-4 shrink-0" />
                           <span>{item}</span>
                         </li>
                       ))}
                     </ul>
 
-                    <Button variant="outline" className="w-full sm:w-auto self-start rounded-md border-purple-200 text-purple-700 hover:text-white hover:bg-purple-600 hover:shadow-lg hover:-translate-y-1 transition-all h-12 px-8 font-medium text-lg" render={<a href={project.link} />} nativeButton={false}>
-                        Read Full Case Study <ArrowUpRight className="ml-2 h-5 w-5" />
+                    <Button variant="outline" className="w-full sm:w-auto self-start rounded-xl border-border/50 text-foreground hover:text-primary-foreground hover:bg-primary/90 hover:shadow-lg hover:-translate-y-1 transition-all h-11 sm:h-12 px-6 sm:px-8 font-semibold text-sm sm:text-base" render={<a href={project.link} />} nativeButton={false}>
+                        Read Full Case Study <ArrowUpRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                     </Button>
                   </div>
 
                   {/* Right Stat Panel with Illustration */}
-                  <div className="lg:w-1/3 bg-purple-50/50 border-t lg:border-t-0 lg:border-l border-purple-100 p-10 flex flex-col items-center justify-center text-center min-h-[400px] relative overflow-hidden group-hover:bg-purple-100/50 transition-colors duration-500">
+                  <div className="lg:w-1/3 bg-primary/5 border-t lg:border-t-0 lg:border-l border-primary/10 p-8 sm:p-10 flex flex-col items-center justify-center text-center min-h-[250px] sm:min-h-[300px] lg:min-h-[400px] relative overflow-hidden group-hover:bg-primary/10 transition-colors duration-500">
                     
-                    <div className="relative w-full h-[160px] mb-8 transform group-hover:scale-105 transition-transform duration-500">
+                    <div className="relative w-full h-[120px] sm:h-[160px] mb-6 sm:mb-8 transform group-hover:scale-105 transition-transform duration-500">
                       <Image src={project.image} alt={project.name} fill className="object-contain" />
                     </div>
 
-                    <span className="text-7xl lg:text-8xl font-bold text-purple-700 tracking-tight relative z-10">
+                    <span className="text-5xl sm:text-6xl lg:text-7xl font-heading font-bold text-primary tracking-tight relative z-10">
                       {project.stat}
                     </span>
-                    <span className="text-zinc-600 mt-4 text-xl font-medium relative z-10">
+                    <span className="text-muted-foreground mt-2 sm:mt-4 text-base sm:text-lg lg:text-xl font-medium relative z-10">
                       {project.statLabel}
                     </span>
                   </div>

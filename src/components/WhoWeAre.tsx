@@ -2,21 +2,20 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { CheckCircle2 } from "lucide-react";
 
 export function WhoWeAre() {
   return (
-    <section className="relative overflow-hidden bg-white py-24 sm:py-32">
+    <section className="relative overflow-hidden bg-background py-16 sm:py-24 border-t border-border/40">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
           {/* Illustration */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="relative w-full h-[350px] sm:h-[450px] bg-purple-50 rounded-2xl flex items-center justify-center border border-purple-100"
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="relative w-full h-[300px] sm:h-[400px] bg-primary/5 rounded-2xl flex items-center justify-center border border-primary/10"
           >
             <Image
               src="/undraw_team-collaboration_re_oubs.svg"
@@ -34,32 +33,41 @@ export function WhoWeAre() {
           <motion.div 
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             className="max-w-2xl text-left"
           >
-            <h2 className="text-sm font-bold tracking-widest text-purple-600 uppercase mb-3">Who We Are</h2>
-            <h3 className="text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl mb-6 leading-tight">
-              A Growth-Driven Digital Agency
+            <h2 className="text-xs font-bold tracking-[0.2em] text-primary uppercase mb-3">Who We Are</h2>
+            <h3 className="text-3xl font-heading font-bold tracking-tight text-foreground sm:text-4xl mb-6 leading-tight">
+              A <span className="text-primary">Growth-Driven</span> Digital Agency
             </h3>
-            <p className="text-lg leading-relaxed text-zinc-600 mb-8">
+            <p className="text-base sm:text-lg leading-relaxed text-muted-foreground mb-8">
               We are a collective of elite engineers, creative strategists, and performance marketers dedicated to scaling businesses. By combining cutting-edge technical infrastructure with data-driven marketing, we don&apos;t just build websites—we build digital ecosystems that drive measurable revenue.
             </p>
             
-            <ul className="space-y-4 mb-8">
-              <li className="flex items-start text-lg text-zinc-700">
-                <CheckCircle2 className="size-6 text-purple-600 mr-3 shrink-0" />
-                <span><strong>Data-Driven Approach:</strong> Every decision is backed by analytics.</span>
-              </li>
-              <li className="flex items-start text-lg text-zinc-700">
-                <CheckCircle2 className="size-6 text-purple-600 mr-3 shrink-0" />
-                <span><strong>End-to-End Solutions:</strong> From deep tech infrastructure to Meta Ads.</span>
-              </li>
-              <li className="flex items-start text-lg text-zinc-700">
-                <CheckCircle2 className="size-6 text-purple-600 mr-3 shrink-0" />
-                <span><strong>Local & Global Expertise:</strong> Proudly integrating global tech locally in Pakistan.</span>
-              </li>
-            </ul>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-10">
+              <div>
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold text-xs">1</span>
+                  <strong className="text-foreground font-semibold">Data-Driven Approach</strong>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed sm:pl-11">Every decision is backed by comprehensive analytics and continuous A/B testing.</p>
+              </div>
+              <div>
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold text-xs">2</span>
+                  <strong className="text-foreground font-semibold">End-to-End Solutions</strong>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed sm:pl-11">From scalable tech infrastructure to high-converting Meta and Google Ads.</p>
+              </div>
+              <div className="sm:col-span-2">
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold text-xs">3</span>
+                  <strong className="text-foreground font-semibold">Local & Global Expertise</strong>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed sm:pl-11">Proudly integrating world-class strategies and engineering locally in Pakistan.</p>
+              </div>
+            </div>
           </motion.div>
 
         </div>

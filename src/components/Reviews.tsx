@@ -53,75 +53,83 @@ const reviews = [
 
 export function Reviews() {
   return (
-    <section className="bg-zinc-50 py-24 sm:py-32 relative overflow-hidden">
+    <section className="bg-background py-16 sm:py-24 relative overflow-hidden border-t border-border/40">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
         
-        <div className="flex flex-row items-center justify-between gap-4 md:gap-12 mb-10 md:mb-16 max-w-7xl mx-auto">
-          <motion.div
-            className="w-[60%] md:w-1/2 text-left"
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-xs md:text-sm font-bold text-zinc-500 uppercase tracking-widest mb-1 md:mb-2">What We Do</h2>
-            <p className="mt-1 md:mt-2 text-2xl md:text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl leading-tight">
-              We Provide Best Digital Services
-            </p>
-            <p className="mt-2 md:mt-4 text-sm md:text-xl text-zinc-600 max-w-lg leading-relaxed hidden sm:block">
-              Don&apos;t just take our word for it. Read what our clients have to say about the results we deliver.
-            </p>
-          </motion.div>
-
+        {/* Top Header Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center mb-10 md:mb-16 max-w-7xl mx-auto">
+          
           <motion.div 
-            className="w-[40%] md:w-1/2 relative h-[120px] md:h-[200px] lg:h-[250px] w-full"
+            className="relative w-full h-[250px] sm:h-[300px] lg:h-[350px] bg-primary/5 rounded-2xl flex items-center justify-center border border-primary/10 order-1 lg:order-2"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           >
             <Image
               src="/undraw_testimonials_4c7y.svg"
               alt="Client Reviews"
               fill
-              className="object-contain md:object-right"
+              className="object-contain p-8"
             />
           </motion.div>
+
+          <motion.div
+            className="text-left order-2 lg:order-1"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <h2 className="text-xs md:text-sm font-bold text-primary uppercase tracking-[0.2em] mb-3">Testimonials</h2>
+            <p className="text-3xl md:text-4xl font-heading font-bold tracking-tight text-foreground lg:text-5xl leading-tight mb-4 md:mb-6">
+              Trusted by <span className="text-primary">industry leaders.</span>
+            </p>
+            <p className="text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed">
+              Read what our clients have to say about the technical infrastructure and results we deliver.
+            </p>
+          </motion.div>
+
         </div>
 
         <div className="w-full">
           <Carousel 
             opts={{
               align: "start",
-              dragFree: true,
+              dragFree: false, // snap exactly
             }}
             className="w-full"
           >
-            <CarouselContent className="-ml-6 py-4">
+            <CarouselContent className="-ml-4 py-4">
               {reviews.map((review, index) => (
-                <CarouselItem key={review.id} className="pl-6 basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/3">
+                <CarouselItem key={review.id} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="h-full select-none p-3"
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: index * 0.05 }}
+                    className="h-full select-none p-2"
                   >
-                    <Card className="bg-white border border-zinc-200 hover:border-purple-300 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 shadow-sm h-full flex flex-col justify-between">
-                      <CardContent className="p-8">
-                        <div className="flex items-center gap-1 mb-6 text-purple-500">
-                          <Star className="size-5 fill-purple-500" />
-                          <Star className="size-5 fill-purple-500" />
-                          <Star className="size-5 fill-purple-500" />
-                          <Star className="size-5 fill-purple-500" />
-                          <Star className="size-5 fill-purple-500" />
+                    <Card className="bg-primary/5 border-transparent hover:border-primary/20 transition-all duration-300 shadow-none h-full flex flex-col justify-between rounded-2xl group">
+                      <CardContent className="p-6 md:p-8">
+                        <div className="flex items-center gap-1 mb-5 text-primary">
+                          <Star className="size-3.5 fill-primary" />
+                          <Star className="size-3.5 fill-primary" />
+                          <Star className="size-3.5 fill-primary" />
+                          <Star className="size-3.5 fill-primary" />
+                          <Star className="size-3.5 fill-primary" />
                         </div>
-                        <p className="text-zinc-600 leading-relaxed mb-8 italic text-lg">
+                        <p className="text-muted-foreground leading-relaxed mb-6 text-sm">
                           &quot;{review.content}&quot;
                         </p>
-                        <div>
-                          <h4 className="font-bold text-zinc-900 text-lg">{review.name}</h4>
-                          <p className="text-base text-zinc-500">{review.role}</p>
+                        <div className="flex items-center gap-3">
+                          <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">
+                            {review.name.charAt(0)}
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-foreground text-sm">{review.name}</h4>
+                            <p className="text-xs text-muted-foreground">{review.role}</p>
+                          </div>
                         </div>
                       </CardContent>
                     </Card>
@@ -132,8 +140,8 @@ export function Reviews() {
             
             {/* Navigation buttons: absolute on all screens */}
             <div className="block">
-              <CarouselPrevious className="absolute top-1/2 -translate-y-1/2 -left-3 md:-left-6 lg:-left-12 h-10 w-10 md:h-14 md:w-14 bg-white border-zinc-200 text-zinc-600 hover:bg-purple-600 hover:text-white hover:border-purple-600 transition-all shadow-md z-10" />
-              <CarouselNext className="absolute top-1/2 -translate-y-1/2 -right-3 md:-right-6 lg:-right-12 h-10 w-10 md:h-14 md:w-14 bg-white border-zinc-200 text-zinc-600 hover:bg-purple-600 hover:text-white hover:border-purple-600 transition-all shadow-md z-10" />
+              <CarouselPrevious className="absolute top-1/2 -translate-y-1/2 -left-3 md:-left-6 lg:-left-12 h-10 w-10 md:h-12 md:w-12 bg-background border-border/50 text-muted-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all shadow-md z-10" />
+              <CarouselNext className="absolute top-1/2 -translate-y-1/2 -right-3 md:-right-6 lg:-right-12 h-10 w-10 md:h-12 md:w-12 bg-background border-border/50 text-muted-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all shadow-md z-10" />
             </div>
           </Carousel>
         </div>
