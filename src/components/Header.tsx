@@ -1,13 +1,65 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const [activeLink, setActiveLink] = useState("");
+
+  useEffect(() => {
+    // Set initial
+    setActiveLink(pathname + window.location.hash);
+
+    const handleHashChange = () => {
+      setActiveLink(window.location.pathname + window.location.hash);
+    };
+
+    const handleScroll = () => {
+      if (pathname === "/") {
+        const contactEl = document.getElementById("contact");
+        if (contactEl) {
+          const rect = contactEl.getBoundingClientRect();
+          // If contact section is in the upper half of the viewport
+          if (rect.top <= window.innerHeight / 1.5) {
+            setActiveLink("/#contact");
+          } else {
+            setActiveLink("/");
+          }
+        }
+      }
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    
+    // Initial check on mount
+    setTimeout(handleScroll, 100);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [pathname]);
+
+  const handleLinkClick = (href: string) => {
+    setActiveLink(href);
+    setIsMobileMenuOpen(false);
+  };
+
+  const getLinkClass = (href: string, isMobile = false) => {
+    // Simple exact match logic
+    const isActive = activeLink === href || (href === "/" && activeLink === "");
+    const baseSize = isMobile ? "text-base block w-full" : "text-sm";
+    return `${baseSize} font-medium transition-colors ${
+      isActive ? "text-purple-600 font-bold" : "text-zinc-600 hover:text-purple-600"
+    }`;
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-zinc-200 bg-white/80 backdrop-blur-md text-zinc-900 shadow-sm">
@@ -15,21 +67,21 @@ export function Header() {
         
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <div className="size-8 rounded-lg bg-purple-600 flex items-center justify-center shadow-md shadow-purple-600/20">
-            <span className="text-white font-bold text-xl">N</span>
-          </div>
-          <span className="text-xl font-bold tracking-tight text-zinc-900">Nexus</span>
+          <span className="text-xl font-bold tracking-tight text-zinc-900">Logo</span>
         </div>
         
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-10">
-          <Link href="#services" className="text-sm font-medium text-zinc-600 hover:text-purple-600 transition-colors">
+          <Link href="/" onClick={() => handleLinkClick("/")} className={getLinkClass("/")}>
+            Home
+          </Link>
+          <Link href="/services" onClick={() => handleLinkClick("/services")} className={getLinkClass("/services")}>
             Services
           </Link>
-          <Link href="/portfolio" className="text-sm font-medium text-zinc-600 hover:text-purple-600 transition-colors">
+          <Link href="/portfolio" onClick={() => handleLinkClick("/portfolio")} className={getLinkClass("/portfolio")}>
             Portfolio
           </Link>
-          <Link href="#contact" className="text-sm font-medium text-zinc-600 hover:text-purple-600 transition-colors">
+          <Link href="/#contact" onClick={() => handleLinkClick("/#contact")} className={getLinkClass("/#contact")}>
             Contact
           </Link>
         </nav>
@@ -62,16 +114,19 @@ export function Header() {
             className="md:hidden bg-white border-t border-zinc-200 overflow-hidden shadow-lg"
           >
             <div className="flex flex-col px-6 py-6 space-y-6">
-              <Link onClick={() => setIsMobileMenuOpen(false)} href="#services" className="text-base font-medium text-zinc-600 hover:text-purple-600 transition-colors">
+              <Link onClick={() => handleLinkClick("/")} href="/" className={getLinkClass("/", true)}>
+                Home
+              </Link>
+              <Link onClick={() => handleLinkClick("/services")} href="/services" className={getLinkClass("/services", true)}>
                 Services
               </Link>
-              <Link onClick={() => setIsMobileMenuOpen(false)} href="/portfolio" className="text-base font-medium text-zinc-600 hover:text-purple-600 transition-colors">
+              <Link onClick={() => handleLinkClick("/portfolio")} href="/portfolio" className={getLinkClass("/portfolio", true)}>
                 Portfolio
               </Link>
-              <Link onClick={() => setIsMobileMenuOpen(false)} href="#contact" className="text-base font-medium text-zinc-600 hover:text-purple-600 transition-colors">
+              <Link onClick={() => handleLinkClick("/#contact")} href="/#contact" className={getLinkClass("/#contact", true)}>
                 Contact
               </Link>
-              <Button render={<a href="#contact" />} onClick={() => setIsMobileMenuOpen(false)} nativeButton={false} className="w-full bg-purple-600 text-white hover:bg-purple-700 transition-all text-base h-11 rounded-md shadow-md shadow-purple-600/20">
+              <Button render={<a href="/#contact" />} onClick={() => setIsMobileMenuOpen(false)} nativeButton={false} className="w-full bg-purple-600 text-white hover:bg-purple-700 transition-all text-base h-11 rounded-md shadow-md shadow-purple-600/20">
                 Get Started
               </Button>
             </div>

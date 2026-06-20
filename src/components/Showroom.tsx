@@ -1,79 +1,74 @@
 "use client";
 
-import { useState } from "react";
+import Image from "next/image";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowUpRight, CheckCircle2, Terminal } from "lucide-react";
-
-const clients = [
-  {
-    id: "kifayatly",
-    name: "Enterprise Retail System",
-    tag: "Headless E-Commerce",
-    challenge: "Client struggled with severe legacy platform bottlenecks, experiencing multi-second load times which severely impacted global conversion metrics.",
-    delivered: [
-      "Next.js App Router Architecture",
-      "Headless CMS Integration",
-      "Global Payment Processor Setup",
-      "Real-time Search Infrastructure"
-    ],
-    stat: "+140%",
-    statLabel: "Conversion Rate Increase",
-    image: "/undraw_control-panel_s0j2.svg",
-    link: "https://example.com"
-  },
-  {
-    id: "chinaunique",
-    name: "B2B Supply Chain",
-    tag: "Digital Marketing & Analytics",
-    challenge: "Struggling to track end-to-end B2B lead attribution resulting in inefficient ad spend and low return on marketing investment.",
-    delivered: [
-      "Server-side Tracking Architecture",
-      "High-Performance Funnel Deployment",
-      "Dynamic B2B Campaign Management",
-      "CRM Integration Workflow"
-    ],
-    stat: "3.8x",
-    statLabel: "Average ROAS",
-    image: "/undraw_growth-analytics_vzjz.svg",
-    link: "https://example.com"
-  },
-  {
-    id: "horizon",
-    name: "Financial Partners",
-    tag: "Secure Corporate Portal",
-    challenge: "Required a highly secure, compliant platform to share sensitive investment data with high-net-worth clients without relying on generic SaaS solutions.",
-    delivered: [
-      "Custom Encrypted Portal",
-      "Automated PDF Reporting Engine",
-      "Role-Based Access Control (RBAC)",
-      "Strict Security Compliance"
-    ],
-    stat: "-60%",
-    statLabel: "Reduction in Support Tickets",
-    image: "/undraw_charts_31si.svg",
-    link: "https://example.com"
-  }
-];
+import { ArrowUpRight, CheckCircle2, Terminal, Loader2 } from "lucide-react";
 
 export function Showroom() {
-  const [activeClient, setActiveClient] = useState(clients[0]);
+  const [clients, setClients] = useState<any[]>([]);
+  const [activeClient, setActiveClient] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/projects')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          setClients(data);
+          setActiveClient(data[0]);
+        }
+        setIsLoading(false);
+      })
+      .catch(err => {
+        console.error("Failed to fetch projects", err);
+        setIsLoading(false);
+      });
+  }, []);
+
+  if (isLoading) {
+    return (
+      <section id="showroom" className="bg-white py-24 sm:py-32 relative border-t border-zinc-200 min-h-[600px] flex items-center justify-center">
+        <Loader2 className="h-10 w-10 animate-spin text-purple-600" />
+      </section>
+    );
+  }
+
+  if (!clients || clients.length === 0 || !activeClient) {
+    return null;
+  }
 
   return (
     <section id="showroom" className="bg-white py-24 sm:py-32 relative overflow-hidden border-t border-zinc-200">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
-        <div className="mx-auto max-w-2xl text-center mb-16">
+        
+        <div className="flex flex-row items-center justify-between gap-4 md:gap-12 mb-10 md:mb-16">
           <motion.div
+            className="w-[60%] md:w-1/2 text-left"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-sm font-bold text-zinc-500 uppercase tracking-widest mb-2">Case Studies</h2>
-            <p className="mt-2 text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl">
-              Proven Delivery at Scale
+            <h2 className="text-sm font-bold text-purple-600 uppercase tracking-widest mb-3">Case Studies</h2>
+            <p className="text-4xl md:text-5xl font-extrabold tracking-tighter text-zinc-900 mb-4 leading-[1.1]">
+              Proven Delivery <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">at Scale</span>
             </p>
+            <p className="mt-2 md:mt-4 text-sm md:text-lg text-zinc-600 max-w-lg hidden sm:block">
+              See how we've helped enterprises transform their digital infrastructure and drive measurable revenue growth.
+            </p>
+          </motion.div>
+
+          <motion.div 
+            className="w-[40%] md:w-1/2 relative h-[120px] md:h-[200px] lg:h-[250px] w-full"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+             <Image src="/undraw_build-mode_aa78.svg" alt="Proven Delivery" fill className="object-contain md:object-right" />
           </motion.div>
         </div>
 

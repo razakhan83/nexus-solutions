@@ -1,124 +1,117 @@
 "use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
-import { Server, Layout, Megaphone, ShieldCheck, Search, MousePointerClick } from "lucide-react";
 import { motion } from "framer-motion";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { CheckCircle2, ArrowRight } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
-const services = [
-  {
-    title: "Custom Web & App Development",
-    description: "We build fully bespoke, high-performance web applications and mobile-responsive platforms using React, Next.js, and Node.js. Our architectures include custom admin panels, real-time data synchronization, and scalable server infrastructure designed for enterprise loads.",
-    tags: ["React & Next.js", "Node.js Architecture", "Database Design"],
-    icon: Server,
-    image: "/undraw_online-shopping_po8w.svg",
-  },
-  {
-    title: "WordPress & CMS Solutions",
-    description: "Empower your content team with deeply customized, high-speed WordPress builds and Headless CMS integrations. We deliver pixel-perfect frontends, conversion-optimized landing pages, and complete client autonomy over their digital assets.",
-    tags: ["Headless CMS", "WordPress", "Custom Themes"],
-    icon: Layout,
-    image: "/undraw_landing-page_zc5e.svg",
-  },
-  {
-    title: "Performance Marketing & Meta Ads",
-    description: "Drive predictable, scalable revenue with data-driven Meta advertising campaigns. We implement bulletproof server-side tracking, advanced audience segmentation, and rigorous A/B testing protocols to maximize your Return on Ad Spend (ROAS).",
-    tags: ["Meta Ads", "Analytics Setup", "Conversion Tracking"],
-    icon: Megaphone,
-    image: "/undraw_social-media-post_tg7l.svg",
-  },
-  {
-    title: "Search Engine Optimization (SEO)",
-    description: "Dominate search engine rankings and capture high-intent organic traffic. We conduct deep technical SEO audits, strategic keyword mapping, and rigorous backlink acquisition to ensure long-term sustainable growth.",
-    tags: ["Technical SEO", "On-Page Optimization", "Link Building"],
-    icon: Search,
-    image: "/undraw_growth-analytics_vzjz.svg",
-  },
-  {
-    title: "SEM & Google Ads",
-    description: "Capture active demand instantly with highly targeted Pay-Per-Click campaigns. We optimize bidding strategies, ad copy, and landing pages to lower your Cost Per Acquisition (CPA) and maximize conversions.",
-    tags: ["Google Ads", "PPC Campaigns", "SEM Strategy"],
-    icon: MousePointerClick,
-    image: "/undraw_online-ad_703t.svg",
-  },
-  {
-    title: "Secure Payment Integrations",
-    description: "Robust integrations of global payment processors and digital wallets, engineered for maximum security and reduced cart abandonment.",
-    tags: ["Stripe API", "Webhooks", "Payment Gateways"],
-    icon: ShieldCheck,
-    image: "/undraw_pay-with-credit-card_77g6.svg",
-  },
-];
+import Link from "next/link";
+import { services } from "@/data/services";
 
 export function Services() {
   return (
-    <section id="services" className="bg-zinc-50 py-24 sm:py-32 relative">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center mb-16">
+    <section id="services" className="py-24 sm:py-32 bg-zinc-50 border-y border-zinc-200 scroll-mt-16 relative overflow-hidden">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
+        
+        {/* Top Header Split Layout */}
+        <div className="flex flex-row items-center justify-between gap-4 md:gap-12 mb-10 md:mb-16 max-w-7xl mx-auto">
           <motion.div
+            className="w-[60%] md:w-1/2 text-left"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-sm font-bold text-zinc-500 uppercase tracking-widest mb-2">Core Competencies</h2>
-            <p className="mt-2 text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl">
-              Technical Excellence Across the Stack
+            <h2 className="text-xs md:text-sm font-bold text-purple-600 uppercase tracking-widest mb-1 md:mb-2">Our Core Services</h2>
+            <p className="mt-1 md:mt-2 text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 lg:text-4xl leading-tight">
+              Everything you need to scale digitally.
             </p>
-            <p className="mt-4 text-xl text-zinc-600">
-              We provide comprehensive digital infrastructure solutions tailored to the strict requirements of modern enterprises.
+            <p className="mt-2 md:mt-4 text-sm md:text-lg text-zinc-600 max-w-lg leading-relaxed hidden sm:block">
+              We provide end-to-end technical infrastructure and data-driven marketing tailored specifically to help your enterprise achieve measurable growth and outpace the competition.
             </p>
           </motion.div>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="h-full"
-              >
-                <Card className="bg-white border border-zinc-200 hover:border-purple-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 rounded-xl overflow-hidden flex flex-col sm:flex-row h-full">
-                <div className="flex-1 flex flex-col">
-                  <CardHeader className="pb-4">
-                    <div className="flex items-center gap-4 mb-3">
-                      <div className="p-3 rounded-lg bg-purple-50 text-purple-600">
-                        <Icon className="size-6" />
-                      </div>
-                      <CardTitle className="text-xl text-zinc-900">{service.title}</CardTitle>
-                    </div>
-                    <CardDescription className="text-zinc-600 leading-relaxed text-base">
-                      {service.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="mt-auto pb-6">
-                    <div className="flex flex-wrap gap-2">
-                      {service.tags.map(tag => (
-                        <span key={tag} className="px-3 py-1 rounded-md text-sm font-medium bg-zinc-50 text-zinc-600 border border-zinc-200">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </CardContent>
-                </div>
-                <div className="w-full sm:w-1/3 bg-zinc-50/50 flex items-center justify-center p-6 border-t sm:border-t-0 sm:border-l border-zinc-100 relative min-h-[150px]">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    className="object-contain p-4"
-                  />
-                </div>
-                </Card>
-              </motion.div>
-            );
-          })}
+          <motion.div 
+            className="w-[40%] md:w-1/2 relative h-[120px] md:h-[200px] lg:h-[250px]"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+             <Image src="/undraw_growth-analytics_vzjz.svg" alt="Growth and Services" fill className="object-contain md:object-right" />
+          </motion.div>
         </div>
+        
+        {/* Full Width Slider (8 Detailed Service Cards) */}
+        <div className="w-full">
+          <Carousel 
+            opts={{
+              align: "start",
+              dragFree: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-6">
+              {services.map((service, index) => (
+                <CarouselItem key={index} className="pl-6 basis-full md:basis-1/2 lg:basis-1/3 xl:basis-[380px]">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="h-full select-none p-3"
+                  >
+                    <Card className="bg-white border border-zinc-200 hover:border-purple-300 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 shadow-sm h-full group overflow-hidden flex flex-col">
+                      <div className="w-full bg-purple-50/50 h-32 md:h-48 relative flex items-center justify-center p-4 md:p-6 border-b border-zinc-100 group-hover:bg-purple-50 transition-colors duration-300">
+                        <div className="relative w-full h-full transform group-hover:scale-105 transition-transform duration-500">
+                          <Image src={service.image} alt={service.title} fill className="object-contain" />
+                        </div>
+                      </div>
+                      <CardHeader className="p-6 md:p-8 pb-3 md:pb-4">
+                        <CardTitle className="text-lg md:text-xl font-bold text-zinc-900 leading-tight">{service.title}</CardTitle>
+                        <CardDescription className="text-zinc-600 leading-relaxed text-sm md:text-base pt-1 md:pt-2">
+                          {service.description}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent className="p-6 md:p-8 pt-0 flex-grow flex flex-col justify-end">
+                        <div className="border-t border-zinc-100 pt-4 md:pt-6 mt-2">
+                          <ul className="space-y-2 md:space-y-3">
+                            {service.features.map((feature, i) => (
+                              <li key={i} className="flex items-start text-xs md:text-sm text-zinc-700 font-medium">
+                                <CheckCircle2 className="size-3 md:size-4 text-purple-600 mr-2 md:mr-3 mt-0.5 shrink-0" />
+                                <span>{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                          <div className="mt-6 md:mt-8">
+                            <Link href={`/services/${service.slug}`} className="inline-flex items-center text-xs md:text-sm font-bold text-purple-600 hover:text-purple-700 transition-colors group/link">
+                              Explore Service <ArrowRight className="ml-1 md:ml-2 h-3 w-3 md:h-4 md:w-4 transform group-hover/link:translate-x-1 transition-transform" />
+                            </Link>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            
+            {/* Navigation buttons: absolute on all screens */}
+            <div className="block">
+              <CarouselPrevious className="absolute top-1/2 -translate-y-1/2 -left-3 md:-left-6 lg:-left-12 h-10 w-10 md:h-14 md:w-14 bg-white border-zinc-200 text-zinc-600 hover:bg-purple-600 hover:text-white hover:border-purple-600 transition-all shadow-md z-10" />
+              <CarouselNext className="absolute top-1/2 -translate-y-1/2 -right-3 md:-right-6 lg:-right-12 h-10 w-10 md:h-14 md:w-14 bg-white border-zinc-200 text-zinc-600 hover:bg-purple-600 hover:text-white hover:border-purple-600 transition-all shadow-md z-10" />
+            </div>
+            
+          </Carousel>
+        </div>
+        
       </div>
     </section>
   );

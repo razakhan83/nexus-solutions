@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
@@ -20,6 +21,7 @@ const projects = [
     ],
     stat: "14x",
     statLabel: "Faster Load Times",
+    image: "/undraw_control-panel_s0j2.svg",
     link: "#"
   },
   {
@@ -34,6 +36,7 @@ const projects = [
     ],
     stat: "215%",
     statLabel: "Increase in Mobile Conversion",
+    image: "/undraw_shopping-app_b80f.svg",
     link: "#"
   },
   {
@@ -48,6 +51,7 @@ const projects = [
     ],
     stat: "4 Mo",
     statLabel: "Time to Market",
+    image: "/undraw_safe_0mei.svg",
     link: "#"
   },
   {
@@ -62,6 +66,7 @@ const projects = [
     ],
     stat: "3.4x",
     statLabel: "Increase in Overall ROAS",
+    image: "/undraw_growth-analytics_vzjz.svg",
     link: "#"
   }
 ];
@@ -99,7 +104,7 @@ export default function PortfolioPage() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Card className="bg-white border border-zinc-200 shadow-sm hover:shadow-xl hover:border-purple-200 transition-all duration-300 rounded-xl overflow-hidden flex flex-col lg:flex-row">
+                <Card className="bg-white border border-zinc-200 shadow-sm hover:shadow-xl hover:border-purple-200 transition-all duration-300 rounded-xl overflow-hidden flex flex-col lg:flex-row group">
                   
                   {/* Left content */}
                   <div className="p-10 lg:w-2/3 flex flex-col justify-center">
@@ -128,12 +133,17 @@ export default function PortfolioPage() {
                     </Button>
                   </div>
 
-                  {/* Right Stat Panel */}
-                  <div className="lg:w-1/3 bg-purple-50/50 border-t lg:border-t-0 lg:border-l border-purple-100 p-10 flex flex-col items-center justify-center text-center min-h-[300px]">
-                    <span className="text-7xl lg:text-8xl font-bold text-purple-700 tracking-tight">
+                  {/* Right Stat Panel with Illustration */}
+                  <div className="lg:w-1/3 bg-purple-50/50 border-t lg:border-t-0 lg:border-l border-purple-100 p-10 flex flex-col items-center justify-center text-center min-h-[400px] relative overflow-hidden group-hover:bg-purple-100/50 transition-colors duration-500">
+                    
+                    <div className="relative w-full h-[160px] mb-8 transform group-hover:scale-105 transition-transform duration-500">
+                      <Image src={project.image} alt={project.name} fill className="object-contain" />
+                    </div>
+
+                    <span className="text-7xl lg:text-8xl font-bold text-purple-700 tracking-tight relative z-10">
                       {project.stat}
                     </span>
-                    <span className="text-zinc-600 mt-6 text-xl font-medium">
+                    <span className="text-zinc-600 mt-4 text-xl font-medium relative z-10">
                       {project.statLabel}
                     </span>
                   </div>

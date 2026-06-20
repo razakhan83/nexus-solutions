@@ -1,0 +1,50 @@
+[
+  {
+    "id": "kifayatly",
+    "name": "Enterprise Retail System",
+    "tag": "Headless E-Commerce",
+    "challenge": "Client struggled with severe legacy platform bottlenecks, experiencing multi-second load times which severely impacted global conversion metrics.",
+    "delivered": [
+      "Next.js App Router Architecture",
+      "Headless CMS Integration",
+      "Global Payment Processor Setup",
+      "Real-time Search Infrastructure"
+    ],
+    "stat": "+140%",
+    "statLabel": "Conversion Rate Increase",
+    "image": "/undraw_control-panel_s0j2.svg",
+    "link": "https://example.com"
+  },
+  {
+    "id": "chinaunique",
+    "name": "B2B Supply Chain",
+    "tag": "Digital Marketing & Analytics",
+    "challenge": "Struggling to track end-to-end B2B lead attribution resulting in inefficient ad spend and low return on marketing investment.",
+    "delivered": [
+      "Server-side Tracking Architecture",
+      "High-Performance Funnel Deployment",
+      "Dynamic B2B Campaign Management",
+      "CRM Integration Workflow"
+    ],
+    "stat": "3.8x",
+    "statLabel": "Average ROAS",
+    "image": "/undraw_growth-analytics_vzjz.svg",
+    "link": "https://example.com"
+  },
+  {
+    "id": "horizon",
+    "name": "Financial Partners",
+    "tag": "Secure Corporate Portal",
+    "challenge": "Required a highly secure, compliant platform to share sensitive investment data with high-net-worth clients without relying on generic SaaS solutions.",
+    "delivered": [
+      "Custom Encrypted Portal",
+      "Automated PDF Reporting Engine",
+      "Role-Based Access Control (RBAC)",
+      "Strict Security Compliance"
+    ],
+    "stat": "-60%",
+    "statLabel": "Reduction in Support Tickets",
+    "image": "/undraw_charts_31si.svg",
+    "link": "https://example.com"
+  }
+]
