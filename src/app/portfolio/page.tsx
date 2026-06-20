@@ -76,7 +76,7 @@ export default function PortfolioPage() {
     <main className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
       <Header />
       
-      <section className="pt-0 pb-8 sm:pb-12 bg-muted/10 border-b border-border/40">
+      <section className="pt-8 lg:pt-12 pb-8 sm:pb-12 bg-muted/10 border-b border-border/40">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

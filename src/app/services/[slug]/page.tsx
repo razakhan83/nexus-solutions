@@ -23,7 +23,7 @@ export default function ServicePage({ params }: { params: Promise<{ slug: string
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-24 pb-12 sm:pt-40 sm:pb-24 bg-white border-b border-zinc-200 overflow-hidden relative">
+      <section className="pt-8 lg:pt-12 pb-12 sm:pb-24 bg-white border-b border-zinc-200 overflow-hidden relative">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <motion.div 
