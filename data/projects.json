@@ -1,5 +1,37 @@
 [
   {
+    "id": "apex-digital",
+    "name": "Apex Digital Media",
+    "tag": "Marketing & Web Design",
+    "challenge": "The client required a comprehensive digital overhaul, combining a high-converting WordPress website with an aggressive Meta Ads strategy and full-scale social media management to drive qualified leads.",
+    "delivered": [
+      "Full-Scale Meta Ads Campaigns",
+      "Custom WordPress Website Design",
+      "End-to-End Social Media Management",
+      "Conversion Rate Optimization"
+    ],
+    "stat": "4.2x",
+    "statLabel": "Increase in Lead Generation",
+    "image": "/undraw_social-growth_osro.svg",
+    "link": "#"
+  },
+  {
+    "id": "astra",
+    "name": "Astra Commerce",
+    "tag": "E-Commerce",
+    "challenge": "A fully custom Next.js server-side e-commerce website and mobile web app with comprehensive dashboard control and easy order tracking.",
+    "delivered": [
+      "Next.js Server-Side Rendering",
+      "Fully Custom Mobile Web App",
+      "Comprehensive Admin Dashboard",
+      "Intuitive Order Tracking System"
+    ],
+    "stat": "215%",
+    "statLabel": "Increase in Mobile Conversion",
+    "image": "/Project Images/Store front.png",
+    "link": "/portfolio/astra"
+  },
+  {
     "id": "kifayatly",
     "name": "Enterprise Retail System",
     "tag": "Headless E-Commerce",

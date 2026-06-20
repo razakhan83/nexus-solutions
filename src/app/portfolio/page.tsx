@@ -10,6 +10,38 @@ import { motion } from "framer-motion";
 
 const projects = [
   {
+    id: "apex-digital",
+    name: "Apex Digital Media",
+    tag: "Marketing & Web Design",
+    challenge: "The client required a comprehensive digital overhaul, combining a high-converting WordPress website with an aggressive Meta Ads strategy and full-scale social media management to drive qualified leads.",
+    delivered: [
+      "Full-Scale Meta Ads Campaigns",
+      "Custom WordPress Website Design",
+      "End-to-End Social Media Management",
+      "Conversion Rate Optimization"
+    ],
+    stat: "4.2x",
+    statLabel: "Increase in Lead Generation",
+    image: "/undraw_social-growth_osro.svg",
+    link: "#"
+  },
+  {
+    id: "astra",
+    name: "Astra Commerce",
+    tag: "E-Commerce",
+    challenge: "A fully custom Next.js server-side e-commerce website and mobile web app with comprehensive dashboard control and easy order tracking.",
+    delivered: [
+      "Next.js Server-Side Rendering",
+      "Fully Custom Mobile Web App",
+      "Comprehensive Admin Dashboard",
+      "Intuitive Order Tracking System"
+    ],
+    stat: "215%",
+    statLabel: "Increase in Mobile Conversion",
+    image: "/Project Images/Store front.png",
+    link: "/portfolio/astra"
+  },
+  {
     id: "techflow",
     name: "TechFlow Enterprise",
     tag: "FinTech App",
@@ -22,21 +54,6 @@ const projects = [
     stat: "14x",
     statLabel: "Faster Load Times",
     image: "/undraw_control-panel_s0j2.svg",
-    link: "#"
-  },
-  {
-    id: "aethos",
-    name: "Aethos Lifestyle",
-    tag: "E-Commerce",
-    challenge: "Aethos had strong brand presence but a terrible conversion rate due to an unoptimized Shopify theme and extremely poor mobile responsiveness.",
-    delivered: [
-      "Custom Headless Shopify Build",
-      "Sub-second Page Transitions",
-      "Advanced Cart Recovery Systems"
-    ],
-    stat: "215%",
-    statLabel: "Increase in Mobile Conversion",
-    image: "/undraw_shopping-app_b80f.svg",
     link: "#"
   },
   {
