@@ -73,7 +73,7 @@ export function Faq() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <Accordion type="single" className="w-full bg-zinc-50 rounded-2xl border border-zinc-200 shadow-sm px-6 py-2">
+              <Accordion className="w-full bg-zinc-50 rounded-2xl border border-zinc-200 shadow-sm px-6 py-2">
                 {faqs.map((faq, index) => (
                   <AccordionItem key={index} value={`item-${index}`} className="last:border-0 border-zinc-200">
                     <AccordionTrigger className="text-left text-lg font-semibold text-zinc-900 hover:text-purple-600 transition-colors py-6">

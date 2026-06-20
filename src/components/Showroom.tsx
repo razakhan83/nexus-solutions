@@ -141,7 +141,7 @@ export function Showroom() {
 
                     <h4 className="text-sm font-bold text-zinc-400 uppercase tracking-widest mt-8 mb-3">Our Implementation</h4>
                     <ul className="space-y-4">
-                      {activeClient.delivered.map((item, i) => (
+                      {activeClient.delivered.map((item: string, i: number) => (
                         <li key={i} className="flex items-start text-base text-zinc-700 hover:text-purple-700 transition-colors">
                           <CheckCircle2 className="size-5 text-purple-600 mr-3 mt-0.5 shrink-0" />
                           <span>{item}</span>

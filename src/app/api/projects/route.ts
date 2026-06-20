@@ -1,18 +1,49 @@
 import { NextResponse } from 'next/server';
+import clientPromise from '@/lib/mongodb';
 import fs from 'fs/promises';
 import path from 'path';
 
-const dataFilePath = path.join(process.cwd(), 'data', 'projects.json');
+const DB_NAME = 'kifayatly-shop';
+const COLLECTION_NAME = 'projects';
 
 // GET all projects
 export async function GET() {
   try {
-    const fileContent = await fs.readFile(dataFilePath, 'utf-8');
-    const projects = JSON.parse(fileContent);
-    return NextResponse.json(projects);
+    const client = await clientPromise;
+    const db = client.db(DB_NAME);
+    const collection = db.collection(COLLECTION_NAME);
+
+    // Fetch projects from MongoDB
+    let projects = await collection.find({}).toArray();
+
+    // Auto-Migration Logic: If MongoDB is empty, try to import from local JSON
+    if (projects.length === 0) {
+      try {
+        const dataFilePath = path.join(process.cwd(), 'data', 'projects.json');
+        const fileContent = await fs.readFile(dataFilePath, 'utf-8');
+        const localProjects = JSON.parse(fileContent);
+        
+        if (localProjects && localProjects.length > 0) {
+          console.log(`Migrating ${localProjects.length} projects to MongoDB...`);
+          // MongoDB insertMany mutates the original objects by adding _id, which is fine
+          await collection.insertMany(localProjects);
+          projects = await collection.find({}).toArray();
+        }
+      } catch (err) {
+        // No local file to migrate, safe to ignore
+      }
+    }
+
+    // Map `_id` to `id` for frontend compatibility just in case
+    const formattedProjects = projects.map(p => ({
+      ...p,
+      _id: p._id.toString()
+    }));
+
+    return NextResponse.json(formattedProjects);
   } catch (error) {
-    console.error('Error reading projects.json', error);
-    return NextResponse.json([]);
+    console.error('Error fetching projects from MongoDB', error);
+    return NextResponse.json([], { status: 500 });
   }
 }
 
@@ -21,27 +52,20 @@ export async function POST(request: Request) {
   try {
     const newProject = await request.json();
     
-    // Ensure data directory exists
-    const dataDir = path.join(process.cwd(), 'data');
-    await fs.mkdir(dataDir, { recursive: true });
-
-    let projects = [];
-    try {
-      const fileContent = await fs.readFile(dataFilePath, 'utf-8');
-      projects = JSON.parse(fileContent);
-    } catch (err) {
-      // File doesn't exist yet, that's fine
+    // Add unique string ID if not present (useful for URLs)
+    if (!newProject.id) {
+      newProject.id = newProject.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '-' + Date.now();
     }
 
-    // Add unique ID
-    newProject.id = newProject.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '-' + Date.now();
+    const client = await clientPromise;
+    const db = client.db(DB_NAME);
+    const collection = db.collection(COLLECTION_NAME);
 
-    projects.push(newProject);
-    await fs.writeFile(dataFilePath, JSON.stringify(projects, null, 2), 'utf-8');
+    await collection.insertOne(newProject);
 
     return NextResponse.json({ success: true, project: newProject });
   } catch (error) {
-    console.error('Error saving project', error);
+    console.error('Error saving project to MongoDB', error);
     return NextResponse.json({ error: 'Failed to save project' }, { status: 500 });
   }
 }
@@ -54,21 +78,20 @@ export async function DELETE(request: Request) {
 
     if (!id) return NextResponse.json({ error: 'Missing id parameter' }, { status: 400 });
 
-    const fileContent = await fs.readFile(dataFilePath, 'utf-8');
-    let projects = JSON.parse(fileContent);
-    
-    const initialLength = projects.length;
-    projects = projects.filter((p: any) => p.id !== id);
+    const client = await clientPromise;
+    const db = client.db(DB_NAME);
+    const collection = db.collection(COLLECTION_NAME);
 
-    if (projects.length === initialLength) {
+    // Delete by the custom 'id' string field we generate
+    const result = await collection.deleteOne({ id: id });
+
+    if (result.deletedCount === 0) {
         return NextResponse.json({ error: 'Project not found' }, { status: 404 });
     }
 
-    await fs.writeFile(dataFilePath, JSON.stringify(projects, null, 2), 'utf-8');
-
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Error deleting project', error);
+    console.error('Error deleting project from MongoDB', error);
     return NextResponse.json({ error: 'Failed to delete project' }, { status: 500 });
   }
 }
