@@ -64,7 +64,7 @@ export function Faq() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
               className="w-full"
             >
-              <Accordion type="single" collapsible="true" className="w-full space-y-4">
+              <Accordion className="w-full space-y-4">
                 {faqs.map((faq, index) => (
                   <AccordionItem key={index} value={`item-${index}`} className="border border-border/40 bg-muted/20 px-6 rounded-xl hover:border-primary/30 transition-colors data-[state=open]:bg-primary/5 data-[state=open]:border-primary/20">
                     <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-foreground hover:text-primary transition-colors py-5 hover:no-underline [&[data-state=open]]:text-primary">
