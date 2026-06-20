@@ -168,7 +168,7 @@ export default function AstraCaseStudy() {
                 <Image src="/Project Images/Mobile view Store.png" alt="Mobile View Store" fill className="object-contain object-top" />
               </div>
               <div className="relative w-[280px] sm:w-[320px] h-[580px] sm:h-[640px] rounded-[3rem] overflow-hidden border-[8px] border-zinc-900 shadow-2xl bg-zinc-900 shrink-0">
-                <Image src="/Project Images/Order Tracking.png" alt="Order Tracking Mobile" fill className="object-contain object-top" />
+                <Image src="/Project Images/Mobile View Order Tracking.png" alt="Order Tracking Mobile" fill className="object-contain object-top" />
               </div>
             </div>
           </motion.div>
