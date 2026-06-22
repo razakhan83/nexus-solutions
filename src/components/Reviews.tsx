@@ -60,7 +60,7 @@ export function Reviews() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center mb-10 md:mb-16 max-w-7xl mx-auto">
           
           <motion.div 
-            className="relative w-full h-[250px] sm:h-[300px] lg:h-[350px] bg-primary/5 rounded-2xl flex items-center justify-center border border-primary/10 order-1 lg:order-2"
+            className="relative w-full h-[250px] sm:h-[300px] lg:h-[350px] flex items-center justify-center"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -75,7 +75,7 @@ export function Reviews() {
           </motion.div>
 
           <motion.div
-            className="text-left order-2 lg:order-1"
+            className="text-left"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}

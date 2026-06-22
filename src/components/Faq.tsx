@@ -81,7 +81,7 @@ export function Faq() {
 
           {/* Right Column: Illustration */}
           <motion.div 
-            className="relative w-full h-[250px] sm:h-[300px] lg:h-[600px] bg-primary/5 rounded-2xl flex items-center justify-center border border-primary/10 order-1 lg:order-2 lg:sticky lg:top-32"
+            className="relative w-full h-[250px] sm:h-[300px] lg:h-[600px] flex items-center justify-center order-1 lg:order-2 lg:sticky lg:top-32"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}

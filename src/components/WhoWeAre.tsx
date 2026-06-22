@@ -15,7 +15,7 @@ export function WhoWeAre() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full h-[300px] sm:h-[400px] bg-primary/5 rounded-2xl flex items-center justify-center border border-primary/10"
+            className="relative w-full h-[300px] sm:h-[400px] flex items-center justify-center"
           >
             <Image
               src="/undraw_team-collaboration_re_oubs.svg"
@@ -46,27 +46,27 @@ export function WhoWeAre() {
             </p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-10">
-              <div>
+              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.4 }}>
                 <div className="flex items-center gap-3 mb-2">
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold text-xs">1</span>
                   <strong className="text-foreground font-semibold">Data-Driven Approach</strong>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed sm:pl-11">Every decision is backed by comprehensive analytics and continuous A/B testing.</p>
-              </div>
-              <div>
+              </motion.div>
+              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.5 }}>
                 <div className="flex items-center gap-3 mb-2">
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold text-xs">2</span>
                   <strong className="text-foreground font-semibold">End-to-End Solutions</strong>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed sm:pl-11">From scalable tech infrastructure to high-converting Meta and Google Ads.</p>
-              </div>
-              <div className="sm:col-span-2">
+              </motion.div>
+              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.6 }} className="sm:col-span-2">
                 <div className="flex items-center gap-3 mb-2">
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold text-xs">3</span>
                   <strong className="text-foreground font-semibold">Local & Global Expertise</strong>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed sm:pl-11">Proudly integrating world-class strategies and engineering locally in Pakistan.</p>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
 

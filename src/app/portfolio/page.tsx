@@ -129,9 +129,6 @@ export default function PortfolioPage() {
                   
                   {/* Left content */}
                   <div className="p-6 sm:p-8 lg:p-10 lg:w-2/3 flex flex-col justify-center">
-                    <span className="px-3 py-1 text-xs sm:text-sm font-mono font-semibold bg-primary/5 text-primary rounded-md border border-primary/10 self-start mb-4 sm:mb-6">
-                      {project.tag}
-                    </span>
                     <h3 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground mb-4 sm:mb-6">{project.name}</h3>
                     
                     <h4 className="text-xs sm:text-sm font-bold text-muted-foreground uppercase tracking-widest mb-2 sm:mb-3">Business Challenge</h4>
@@ -155,7 +152,7 @@ export default function PortfolioPage() {
                   </div>
 
                   {/* Right Stat Panel with Illustration */}
-                  <div className="lg:w-1/3 bg-primary/5 border-t lg:border-t-0 lg:border-l border-primary/10 p-8 sm:p-10 flex flex-col items-center justify-center text-center min-h-[250px] sm:min-h-[300px] lg:min-h-[400px] relative overflow-hidden group-hover:bg-primary/10 transition-colors duration-500">
+                  <div className="lg:w-1/3 p-8 sm:p-10 flex flex-col items-center justify-center text-center min-h-[250px] sm:min-h-[300px] lg:min-h-[400px] relative overflow-hidden">
                     
                     <div className="relative w-full h-[120px] sm:h-[160px] mb-6 sm:mb-8 transform group-hover:scale-105 transition-transform duration-500">
                       <Image src={project.image} alt={project.name} fill className="object-contain" />

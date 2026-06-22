@@ -12,7 +12,7 @@ export function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
           {/* Left Column: Text & CTA */}
-          <div className="lg:col-span-6 flex flex-col order-2 lg:order-1">
+          <div className="lg:col-span-6 flex flex-col order-1 lg:order-1">
             
             {/* Top Label / Eyebrow */}
             <motion.div 
@@ -50,12 +50,16 @@ export function Hero() {
               </p>
               
               <div className="flex flex-col sm:flex-row items-center gap-4">
-                <Button render={<Link href="/portfolio" />} nativeButton={false} className="w-full sm:w-auto font-semibold text-sm h-10 sm:h-11 px-6 bg-primary text-primary-foreground hover:bg-primary/90 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 rounded-xl">
-                  View Portfolio
-                </Button>
-                <Button render={<a href="#contact" />} nativeButton={false} className="w-full sm:w-auto font-semibold text-sm h-10 sm:h-11 px-6 bg-foreground text-background hover:bg-foreground/90 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 rounded-xl">
-                  Contact Sales
-                </Button>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
+                  <Button render={<Link href="/portfolio" />} nativeButton={false} className="w-full sm:w-auto font-semibold text-sm h-10 sm:h-11 px-6 bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 rounded-xl">
+                    View Portfolio
+                  </Button>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
+                  <Button render={<a href="#contact" />} nativeButton={false} className="w-full sm:w-auto font-semibold text-sm h-10 sm:h-11 px-6 bg-foreground text-background hover:bg-foreground/90 hover:shadow-xl transition-all duration-300 rounded-xl">
+                    Contact Sales
+                  </Button>
+                </motion.div>
               </div>
             </motion.div>
           </div>
@@ -65,7 +69,7 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-            className="lg:col-span-6 relative w-full aspect-[4/3] sm:aspect-video lg:aspect-[16/11] overflow-hidden order-1 lg:order-2"
+            className="lg:col-span-6 relative w-full aspect-[4/3] sm:aspect-video lg:aspect-[16/11] overflow-hidden order-2 lg:order-2"
           >
             <Image
               src="/undraw_web-developer_gxaa.svg"

@@ -64,26 +64,34 @@ export function Header() {
           
           {/* Desktop Nav */}
           <nav className="hidden md:flex gap-12 items-center">
-            <Link href="/" onClick={() => handleLinkClick("/")} className={getLinkClass("/")}>
-              Home
-            </Link>
-            <Link href="/services" onClick={() => handleLinkClick("/services")} className={getLinkClass("/services")}>
-              Services
-            </Link>
-            <Link href="/portfolio" onClick={() => handleLinkClick("/portfolio")} className={getLinkClass("/portfolio")}>
-              Portfolio
-            </Link>
-            <Link href="/#contact" onClick={() => handleLinkClick("/#contact")} className={getLinkClass("/#contact")}>
-              Contact
-            </Link>
+            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
+              <Link href="/" onClick={() => handleLinkClick("/")} className={getLinkClass("/")}>
+                Home
+              </Link>
+            </motion.div>
+            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
+              <Link href="/services" onClick={() => handleLinkClick("/services")} className={getLinkClass("/services")}>
+                Services
+              </Link>
+            </motion.div>
+            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }}>
+              <Link href="/portfolio" onClick={() => handleLinkClick("/portfolio")} className={getLinkClass("/portfolio")}>
+                Portfolio
+              </Link>
+            </motion.div>
+            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}>
+              <Link href="/#contact" onClick={() => handleLinkClick("/#contact")} className={getLinkClass("/#contact")}>
+                Contact
+              </Link>
+            </motion.div>
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center">
+          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.5 }} className="hidden md:flex items-center">
             <Button render={<a href="#contact" />} nativeButton={false} variant="default" className="uppercase tracking-widest text-xs px-8 min-w-[140px]">
               Engage
             </Button>
-          </div>
+          </motion.div>
 
           {/* Mobile Hamburger */}
           <div className="md:hidden flex items-center z-50">

@@ -32,10 +32,10 @@ export default function ServicePage({ params }: { params: Promise<{ slug: string
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
-              <h1 className="text-5xl font-bold tracking-tight text-zinc-900 sm:text-6xl mb-6 leading-tight">
+              <h1 className="text-3xl font-heading font-bold tracking-tight text-zinc-900 sm:text-4xl lg:text-5xl mb-6 leading-tight">
                 {service.title}
               </h1>
-              <p className="text-xl leading-relaxed text-zinc-600 mb-8">
+              <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600 mb-8">
                 {service.longDescription}
               </p>
               <Button variant="default" className="bg-primary hover:bg-primary text-white rounded-full h-14 px-8 text-lg font-medium shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all" render={<a href="/#contact" />} nativeButton={false}>
@@ -59,7 +59,7 @@ export default function ServicePage({ params }: { params: Promise<{ slug: string
       <section className="py-24 sm:py-32 bg-zinc-50">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl">Our Approach to {service.title}</h2>
+            <h2 className="text-2xl font-heading font-bold tracking-tight text-zinc-900 sm:text-3xl lg:text-4xl">Our Approach to {service.title}</h2>
           </div>
           
           <div className="space-y-16 lg:space-y-32">
@@ -74,7 +74,7 @@ export default function ServicePage({ params }: { params: Promise<{ slug: string
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <h3 className="text-2xl sm:text-3xl font-bold text-zinc-900 mb-4">{feature.title}</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-zinc-900 mb-4">{feature.title}</h3>
                   <p className="text-base sm:text-lg text-zinc-600 leading-relaxed">{feature.description}</p>
                 </motion.div>
                 
@@ -102,7 +102,7 @@ export default function ServicePage({ params }: { params: Promise<{ slug: string
       {/* CTA */}
       <section className="py-24 sm:py-32 bg-primary text-center">
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-5xl mb-6">Ready to scale your business?</h2>
+          <h2 className="text-2xl font-heading font-bold tracking-tight text-white sm:text-3xl lg:text-4xl mb-6">Ready to scale your business?</h2>
           <p className="text-xl leading-relaxed text-primary/20 mb-10">
             Let's discuss how our {service.title} expertise can drive measurable growth for your enterprise.
           </p>

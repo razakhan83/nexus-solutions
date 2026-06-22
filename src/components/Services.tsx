@@ -24,7 +24,7 @@ export function Services() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center mb-10 md:mb-16 max-w-7xl mx-auto">
           
           <motion.div 
-            className="relative w-full h-[250px] sm:h-[300px] lg:h-[350px] bg-primary/5 rounded-2xl flex items-center justify-center border border-primary/10 order-1 lg:order-2"
+            className="relative w-full h-[250px] sm:h-[300px] lg:h-[350px] flex items-center justify-center lg:order-2"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -34,7 +34,7 @@ export function Services() {
           </motion.div>
 
           <motion.div
-            className="text-left order-2 lg:order-1"
+            className="text-left lg:order-1"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -71,7 +71,7 @@ export function Services() {
                     className="h-full select-none p-3"
                   >
                     <Card className="bg-white border border-zinc-200 hover:border-primary/30 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 shadow-sm h-full group overflow-hidden flex flex-col">
-                      <div className="w-full bg-primary/5 h-40 sm:h-48 relative flex items-center justify-center p-4 md:p-6 border-b border-zinc-100 group-hover:bg-primary/5 transition-colors duration-300">
+                      <div className="w-full h-40 sm:h-48 relative flex items-center justify-center p-4 md:p-6">
                         <div className="relative w-full h-full transform group-hover:scale-105 transition-transform duration-500">
                           <Image src={service.image} alt={service.title} fill className="object-contain" />
                         </div>
