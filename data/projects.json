@@ -17,7 +17,7 @@
   },
   {
     "id": "astra",
-    "name": "Astra Commerce",
+    "name": "Custom Multi-Tenant E-Commerce Suite & Admin Dashboard",
     "tag": "E-Commerce",
     "challenge": "A fully custom Next.js server-side e-commerce website and mobile web app with comprehensive dashboard control and easy order tracking.",
     "delivered": [

@@ -30,8 +30,8 @@ export default function AstraCaseStudy() {
             <span className="px-3 py-1 text-xs sm:text-sm font-mono font-semibold bg-primary/5 text-primary rounded-md border border-primary/10 mb-6 inline-block">
               E-Commerce Platform
             </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-heading font-bold tracking-tight text-foreground mb-6">
-              Astra Commerce
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold tracking-tight text-foreground mb-6 leading-tight">
+              Custom Multi-Tenant E-Commerce Suite & Admin Dashboard
             </h1>
             <p className="text-lg sm:text-xl leading-relaxed text-muted-foreground max-w-3xl">
               We engineered a fully custom, server-side rendered Next.js e-commerce website and mobile web app. The platform provides complete administrative control via a comprehensive dashboard and features an intuitive, seamless order tracking system for customers.
