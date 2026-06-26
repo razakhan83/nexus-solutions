@@ -6,6 +6,7 @@ import { Showroom } from "@/components/Showroom";
 import { Reviews } from "@/components/Reviews";
 import { Faq } from "@/components/Faq";
 import { ContactForm } from "@/components/ContactForm";
+import { TrustBadges } from "@/components/TrustBadges";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
       <Showroom />
       <Reviews />
       <Faq />
+      <TrustBadges />
       <ContactForm />
       <Footer />
     </main>
