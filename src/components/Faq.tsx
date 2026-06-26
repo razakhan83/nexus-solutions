@@ -12,19 +12,19 @@ import {
 const faqs = [
   {
     question: "Do you build custom websites or use WordPress/Shopify?",
-    answer: "We do both! We build highly scalable, custom web applications from scratch (using React and Next.js) for enterprises, but we also create highly optimized, conversion-focused WordPress and Shopify stores tailored to your exact needs."
+    answer: "We are full-stack experts. For enterprise needs, we engineer fully custom, highly scalable applications from scratch (using React and Next.js). We also build highly optimized, conversion-focused WordPress and Shopify stores tailored to your exact business requirements."
+  },
+  {
+    question: "What platforms and technologies do you integrate with?",
+    answer: "We seamlessly integrate with global platforms including Shopify, WooCommerce, WordPress, Meta, and Google Ads. Our technical stack heavily utilizes React, Next.js, and Node.js for high-performance custom infrastructure."
+  },
+  {
+    question: "Can you build multi-tenant e-commerce systems?",
+    answer: "Absolutely. We specialize in engineering complex, Custom Multi-Tenant E-Commerce Suites complete with enterprise-grade Admin Dashboards, real-time inventory tracking, and advanced role-based access control."
   },
   {
     question: "How long does it take to see results from SEO and Performance Marketing?",
     answer: "Performance marketing (Google/Meta Ads) can start generating high-intent traffic and leads within the first week of launch. SEO is a sustainable long-term strategy, and significant ranking improvements typically take between 3 to 6 months depending on keyword competitiveness."
-  },
-  {
-    question: "Do you support secure payment gateway integrations in Pakistan?",
-    answer: "Yes. We specialize in integrating secure, local, and international payment gateways that are fully supported in Pakistan (such as Stripe, 2Checkout, Safepay, and local bank APIs) to ensure your e-commerce platform processes transactions flawlessly."
-  },
-  {
-    question: "Will my website be fully mobile responsive?",
-    answer: "Absolutely. Over 70% of web traffic is mobile. We design and develop with a mobile-first approach, ensuring your website or app performs perfectly across all devices and screen sizes."
   },
   {
     question: "Do you provide ongoing support after the project is launched?",
@@ -81,7 +81,7 @@ export function Faq() {
 
           {/* Right Column: Illustration */}
           <motion.div 
-            className="relative w-full h-[250px] sm:h-[300px] lg:h-[600px] flex items-center justify-center order-1 lg:order-2 lg:sticky lg:top-32"
+            className="relative w-full h-[250px] sm:h-[300px] lg:h-[600px] flex items-center justify-center order-1 lg:order-2 lg:sticky lg:top-32 bg-primary/5 lg:bg-transparent rounded-3xl lg:rounded-none p-6 lg:p-0 border border-primary/10 lg:border-transparent mb-8 lg:mb-0"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}

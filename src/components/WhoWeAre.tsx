@@ -9,7 +9,7 @@ import Link from "next/link";
 export function WhoWeAre() {
   return (
     <section id="about" className="relative overflow-hidden bg-background min-h-[100dvh] w-full flex flex-col justify-center border-t border-border/40 py-16 sm:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full flex flex-col gap-8 md:gap-12 justify-center h-full md:max-h-[100dvh]">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full flex flex-col gap-8 md:gap-12 justify-center h-full md:max-h-[100dvh] relative z-10">
         
         {/* Top Section: Split Row */}
         <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8 lg:gap-16 w-full flex-1 min-h-0 pt-20 md:pt-0">
@@ -20,7 +20,7 @@ export function WhoWeAre() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full hidden md:flex md:w-1/2 h-[200px] lg:h-[400px] items-center justify-center shrink-0"
+            className="relative w-full md:w-1/2 h-[200px] sm:h-[250px] lg:h-[400px] flex items-center justify-center shrink-0 bg-primary/5 md:bg-transparent rounded-3xl md:rounded-none p-6 md:p-0 border border-primary/10 md:border-transparent"
           >
             <Image
               src="/undraw_team-collaboration_phnf.svg"

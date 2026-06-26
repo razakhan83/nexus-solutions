@@ -31,7 +31,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col selection:bg-primary selection:text-primary-foreground relative" suppressHydrationWarning>
-        <div className="absolute top-0 left-0 w-full h-[180px] lg:h-[280px] z-0 pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-[250px] lg:h-[280px] z-0 pointer-events-none animate-wave-in">
           <svg 
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1440 320" 

@@ -30,7 +30,7 @@ export function Services({ limit, showViewAll = false, layout = "carousel" }: { 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center mb-10 md:mb-16 max-w-7xl mx-auto">
           
           <motion.div 
-            className="relative w-full h-[250px] sm:h-[300px] lg:h-[350px] flex items-center justify-center lg:order-2"
+            className="relative w-full h-[250px] sm:h-[300px] lg:h-[350px] flex items-center justify-center lg:order-2 bg-primary/5 lg:bg-transparent rounded-3xl lg:rounded-none p-6 lg:p-0 border border-primary/10 lg:border-transparent"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -121,21 +121,21 @@ export function Services({ limit, showViewAll = false, layout = "carousel" }: { 
 function ServiceCard({ service }: { service: any }) {
   return (
     <Card className="bg-white border border-zinc-200 hover:border-primary/30 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 shadow-sm h-full group overflow-hidden flex flex-col">
-      <div className="w-full h-32 sm:h-36 relative flex items-center justify-center p-3">
+      <div className="w-full h-32 sm:h-40 relative flex items-center justify-center p-4">
         <div className="relative w-full h-full transform group-hover:scale-105 transition-transform duration-500">
           <Image src={service.image} alt={service.title} fill className="object-contain" />
         </div>
       </div>
       <CardHeader className="p-3 md:p-4 pb-0 md:pb-1">
         <CardTitle className="text-base md:text-xl font-bold text-primary leading-tight">{service.title}</CardTitle>
-        <CardDescription className="text-zinc-600 leading-relaxed text-xs md:text-sm pt-1 md:pt-2 line-clamp-2">
+        <CardDescription className="text-zinc-600 leading-relaxed text-xs md:text-sm pt-1 md:pt-2">
           {service.description}
         </CardDescription>
       </CardHeader>
       <CardContent className="p-3 md:p-4 pt-1 md:pt-2 flex-grow flex flex-col justify-start">
         {/* Features section stays at top right under description */}
         <div className="pt-1 md:pt-2">
-          <ul className="space-y-1.5 md:space-y-2 hidden sm:block">
+          <ul className="space-y-1.5 md:space-y-2 block">
             {service.features.map((feature: string, i: number) => (
               <li key={i} className="flex items-start text-xs md:text-sm text-zinc-700 font-medium">
                 <div className="w-1.5 h-1.5 rounded-sm bg-primary mr-2 md:mr-3 mt-1.5 shrink-0" />

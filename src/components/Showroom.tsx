@@ -80,7 +80,7 @@ export function Showroom() {
           >
             <CarouselContent className="-ml-6 py-4">
               {clients.map((client, index) => (
-                <CarouselItem key={client.id} className="pl-6 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-[450px]">
+                <CarouselItem key={client.id} className="pl-6 basis-[85%] sm:basis-1/2 lg:basis-1/3 xl:basis-[450px]">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -93,33 +93,33 @@ export function Showroom() {
                     >
                       
                       {/* Image Section */}
-                      <div className="relative w-full aspect-video overflow-hidden">
+                      <div className="relative w-full h-[140px] sm:h-[180px] overflow-hidden">
                         <Image 
                           src={client.image} 
                           alt={client.name} 
                           fill 
-                          className="object-cover sm:object-contain p-4 group-hover:scale-105 transition-transform duration-700" 
+                          className="object-cover sm:object-contain p-3 group-hover:scale-105 transition-transform duration-700" 
                         />
                       </div>
 
                       {/* Content Section */}
-                      <div className="p-6 sm:p-8 flex flex-col flex-grow">
-                        <h3 className="text-2xl font-bold text-zinc-900 mb-5">{client.name}</h3>
+                      <div className="p-4 sm:p-6 flex flex-col flex-grow">
+                        <h3 className="text-xl sm:text-2xl font-bold text-zinc-900 mb-3 sm:mb-5">{client.name}</h3>
                         
                         {/* Highlight Metric */}
-                        <div className="flex items-center gap-4 mb-6 pb-6 border-b border-zinc-100">
+                        <div className="flex items-center gap-4 mb-4 pb-4 sm:mb-6 sm:pb-6 border-b border-zinc-100">
                           <div className="flex flex-col">
-                             <span className="text-4xl font-heading font-bold text-primary tracking-tight">{client.stat}</span>
-                             <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest mt-1">{client.statLabel}</span>
+                             <span className="text-3xl sm:text-4xl font-heading font-bold text-primary tracking-tight">{client.stat}</span>
+                             <span className="text-[10px] sm:text-xs font-bold text-zinc-500 uppercase tracking-widest mt-1">{client.statLabel}</span>
                           </div>
                         </div>
 
-                        <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-4">Implementation</h4>
-                        <ul className="space-y-3 mb-8 flex-grow">
+                        <h4 className="text-[10px] sm:text-xs font-bold text-zinc-400 uppercase tracking-widest mb-3 sm:mb-4">Implementation</h4>
+                        <ul className="space-y-2 sm:space-y-3 mb-5 sm:mb-8 flex-grow">
                           {client.delivered.slice(0, 3).map((item: string, i: number) => (
-                            <li key={i} className="flex items-start text-sm text-zinc-700 font-medium">
-                              <CheckCircle2 className="size-4 text-primary mr-3 mt-0.5 shrink-0" />
-                              <span>{item}</span>
+                            <li key={i} className="flex items-start text-xs sm:text-sm text-zinc-700 font-medium">
+                              <CheckCircle2 className="size-3.5 sm:size-4 text-primary mr-2 sm:mr-3 mt-0.5 shrink-0" />
+                              <span className="leading-tight sm:leading-normal">{item}</span>
                             </li>
                           ))}
                         </ul>

@@ -4,6 +4,7 @@ import { use } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { services } from "@/data/services";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -67,7 +68,7 @@ export default function ServicePage({ params }: { params: Promise<{ slug: string
             </motion.div>
 
             <motion.div 
-              className="lg:w-1/2 relative h-[250px] sm:h-[350px] lg:h-[450px] w-full"
+              className="lg:w-1/2 relative h-[250px] sm:h-[350px] lg:h-[450px] w-full mt-8 lg:mt-0"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
@@ -118,7 +119,7 @@ export default function ServicePage({ params }: { params: Promise<{ slug: string
           
           <div className="space-y-24 lg:space-y-40">
             {service.deepFeatures.map((feature, index) => (
-              <div key={index} className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-24 ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}>
+              <div key={index} className={`flex flex-col lg:flex-row items-center gap-10 sm:gap-12 lg:gap-24 bg-primary/5 lg:bg-transparent rounded-3xl lg:rounded-none p-6 sm:p-10 lg:p-0 border border-primary/10 lg:border-transparent ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}>
                 
                 {/* Text Content */}
                 <motion.div 
@@ -145,15 +146,15 @@ export default function ServicePage({ params }: { params: Promise<{ slug: string
                 
                 {/* Illustration Image */}
                 <motion.div 
-                  className="lg:w-1/2 relative h-[250px] sm:h-[300px] lg:h-[400px] w-full group"
+                  className="lg:w-1/2 relative h-[250px] sm:h-[300px] lg:h-[400px] w-full group mt-8 lg:mt-0"
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
                 >
-                  <div className="absolute inset-0 bg-primary/5 rounded-[40px] transform rotate-3 group-hover:rotate-6 transition-transform duration-500 -z-10"></div>
+                  <div className="hidden lg:block absolute inset-0 bg-primary/5 rounded-[40px] transform rotate-3 group-hover:rotate-6 transition-transform duration-500 -z-10"></div>
                   {feature.image && (
-                    <Image src={feature.image} alt={feature.title} fill className="object-contain drop-shadow-2xl p-4 lg:p-8 transform group-hover:scale-105 transition-transform duration-500" />
+                    <Image src={feature.image} alt={feature.title} fill className="object-contain drop-shadow-2xl p-0 lg:p-8 transform group-hover:scale-105 transition-transform duration-500" />
                   )}
                 </motion.div>
                 
