@@ -15,8 +15,15 @@ const heading = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title: "KG Agency | Digital Marketing & Web Development",
-  description: "Enterprise digital marketing, SEO, and web development services by KG Agency.",
+  title: "Custom Multi-Tenant E-Commerce Suite & Admin Dashboard",
+  description: "Enterprise digital marketing, SEO, and web development services.",
+  openGraph: {
+    images: ["/undraw_web-developer_gxaa.svg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/undraw_web-developer_gxaa.svg"],
+  }
 };
 
 export default function RootLayout({
