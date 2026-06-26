@@ -15,6 +15,7 @@ import {
   SelectTrigger, 
   SelectValue 
 } from "@/components/ui/select";
+import { FieldGroup, Field, FieldLabel } from "@/components/ui/field";
 import { Mail, MessageCircle, CheckCircle2, ArrowRight, Loader2 } from "lucide-react";
 
 
@@ -96,7 +97,7 @@ export function ContactForm() {
           >
             <AnimatePresence mode="wait">
               {!isSuccess ? (
-                <motion.form 
+                <motion.form
                   key="form"
                   variants={{
                     hidden: { opacity: 0 },
@@ -106,75 +107,85 @@ export function ContactForm() {
                   animate="show"
                   exit={{ opacity: 0, scale: 0.98 }}
                   onSubmit={handleSubmit}
-                  className="space-y-6 relative z-10"
+                  className="relative z-10 w-full"
                 >
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <motion.div variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }} className="space-y-2 group">
-                      <Label htmlFor="name" className="text-foreground text-sm font-semibold group-focus-within:text-primary transition-colors">Full Name</Label>
-                      <Input 
-                        id="name" 
-                        required 
-                        placeholder="e.g. Sarah Jenkins" 
-                        className="bg-muted/20 border-border/50 hover:border-primary/30 focus-visible:ring-2 focus-visible:ring-primary focus-visible:border-primary transition-all duration-300 shadow-none h-12"
-                      />
+                  <FieldGroup>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <motion.div variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}>
+                        <Field>
+                          <FieldLabel htmlFor="name">Full Name</FieldLabel>
+                          <Input 
+                            id="name" 
+                            required 
+                            placeholder="e.g. Sarah Jenkins" 
+                            className="bg-muted/20 hover:border-primary/30 transition-all duration-300 shadow-none h-12"
+                          />
+                        </Field>
+                      </motion.div>
+                      <motion.div variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}>
+                        <Field>
+                          <FieldLabel htmlFor="email">Corporate Email</FieldLabel>
+                          <Input 
+                            id="email" 
+                            type="email" 
+                            required 
+                            placeholder="sarah@company.com" 
+                            className="bg-muted/20 hover:border-primary/30 transition-all duration-300 shadow-none h-12"
+                          />
+                        </Field>
+                      </motion.div>
+                    </div>
+
+                    <motion.div variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}>
+                      <Field>
+                        <FieldLabel htmlFor="project-type">Primary Objective</FieldLabel>
+                        <Select required>
+                          <SelectTrigger id="project-type" className="w-full bg-muted/20 hover:border-primary/30 transition-all duration-300 shadow-none h-12">
+                            <SelectValue placeholder="Select an objective..." />
+                          </SelectTrigger>
+                          <SelectContent className="bg-background border-border/50 shadow-xl">
+                            <SelectGroup>
+                              <SelectItem value="ecommerce">Enterprise E-Commerce Replatforming</SelectItem>
+                              <SelectItem value="cms">Corporate Website & CMS Development</SelectItem>
+                              <SelectItem value="marketing">Performance Marketing & Scale</SelectItem>
+                              <SelectItem value="other">General Technical Consultation</SelectItem>
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                      </Field>
                     </motion.div>
-                    <motion.div variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }} className="space-y-2 group">
-                      <Label htmlFor="email" className="text-foreground text-sm font-semibold group-focus-within:text-primary transition-colors">Corporate Email</Label>
-                      <Input 
-                        id="email" 
-                        type="email" 
-                        required 
-                        placeholder="sarah@company.com" 
-                        className="bg-muted/20 border-border/50 hover:border-primary/30 focus-visible:ring-2 focus-visible:ring-primary focus-visible:border-primary transition-all duration-300 shadow-none h-12"
-                      />
+
+                    <motion.div variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}>
+                      <Field>
+                        <FieldLabel htmlFor="description">Project Scope & Timeline</FieldLabel>
+                        <Textarea 
+                          id="description" 
+                          required 
+                          placeholder="Briefly describe your requirements, timeline, and estimated budget..." 
+                          className="bg-muted/20 hover:border-primary/30 min-h-[140px] resize-none transition-all duration-300 shadow-none p-4"
+                        />
+                      </Field>
                     </motion.div>
-                  </div>
 
-                  <motion.div variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }} className="space-y-2 group">
-                    <Label htmlFor="project-type" className="text-foreground text-sm font-semibold group-focus-within:text-primary transition-colors">Primary Objective</Label>
-                    <Select required>
-                      <SelectTrigger className="w-full bg-muted/20 border-border/50 hover:border-primary/30 focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 shadow-none h-12">
-                        <SelectValue placeholder="Select an objective..." />
-                      </SelectTrigger>
-                      <SelectContent className="bg-background border-border/50 shadow-xl">
-                        <SelectGroup>
-                          <SelectItem value="ecommerce">Enterprise E-Commerce Replatforming</SelectItem>
-                          <SelectItem value="cms">Corporate Website & CMS Development</SelectItem>
-                          <SelectItem value="marketing">Performance Marketing & Scale</SelectItem>
-                          <SelectItem value="other">General Technical Consultation</SelectItem>
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
-                  </motion.div>
-
-                  <motion.div variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }} className="space-y-2 group">
-                    <Label htmlFor="description" className="text-foreground text-sm font-semibold group-focus-within:text-primary transition-colors">Project Scope & Timeline</Label>
-                    <Textarea 
-                      id="description" 
-                      required 
-                      placeholder="Briefly describe your requirements, timeline, and estimated budget..." 
-                      className="bg-muted/20 border-border/50 hover:border-primary/30 focus-visible:ring-2 focus-visible:ring-primary focus-visible:border-primary min-h-[140px] resize-none transition-all duration-300 shadow-none p-4"
-                    />
-                  </motion.div>
-
-                  <motion.div variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}>
-                    <Button 
-                      type="submit" 
-                      disabled={isSubmitting} 
-                      className="w-full bg-primary hover:bg-primary/90 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 text-primary-foreground font-semibold h-14 rounded-xl text-base"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                          Transmitting Request...
-                        </>
-                      ) : (
-                        <>
-                          Submit Inquiry <ArrowRight className="ml-2 h-5 w-5" />
-                        </>
-                      )}
-                    </Button>
-                  </motion.div>
+                    <motion.div variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}>
+                      <Button 
+                        type="submit" 
+                        disabled={isSubmitting}
+                        className="w-full sm:w-auto px-8 relative overflow-hidden group"
+                      >
+                        <span className={`flex items-center transition-transform duration-300 ${isSubmitting ? '-translate-y-12' : 'translate-y-0'}`}>
+                          Submit Inquiry <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </span>
+                        
+                        <span className={`absolute inset-0 flex items-center justify-center transition-transform duration-300 ${isSubmitting ? 'translate-y-0' : 'translate-y-12'}`}>
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                        </span>
+                      </Button>
+                      <p className="text-xs text-muted-foreground mt-4">
+                        By submitting, you agree to our privacy policy. Your data is encrypted and secure.
+                      </p>
+                    </motion.div>
+                  </FieldGroup>
                 </motion.form>
               ) : (
                   <motion.div
@@ -205,7 +216,7 @@ export function ContactForm() {
                   <Button 
                     variant="outline" 
                     onClick={() => setIsSuccess(false)}
-                    className="border-border/50 text-foreground hover:text-primary hover:bg-primary/5 hover:-translate-y-1 transition-all rounded-xl px-8 h-12 text-base font-semibold relative z-10"
+                    className="relative z-10"
                   >
                     Submit Another Inquiry
                   </Button>

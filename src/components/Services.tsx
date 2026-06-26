@@ -79,7 +79,7 @@ export function Services({ limit, showViewAll = false, layout = "carousel" }: { 
             <Carousel opts={{ align: "start", dragFree: false }} className="w-full">
               <CarouselContent className="-ml-6">
                 {displayedServices.map((service, index) => (
-                  <CarouselItem key={index} className="pl-6 basis-full md:basis-1/2 lg:basis-1/3 xl:basis-[380px]">
+                  <CarouselItem key={index} className="pl-6 basis-full md:basis-1/2 lg:basis-1/3 xl:basis-[350px]">
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
@@ -106,7 +106,7 @@ export function Services({ limit, showViewAll = false, layout = "carousel" }: { 
               variant="default"
               render={<Link href="/services" />} 
               nativeButton={false}
-              className="font-bold text-sm lg:text-base h-12 lg:h-14 px-8 lg:px-10 transition-all duration-300 rounded-xl shadow-lg hover:shadow-xl"
+              className=""
             >
               View All Services <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
@@ -121,20 +121,21 @@ export function Services({ limit, showViewAll = false, layout = "carousel" }: { 
 function ServiceCard({ service }: { service: any }) {
   return (
     <Card className="bg-white border border-zinc-200 hover:border-primary/30 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 shadow-sm h-full group overflow-hidden flex flex-col">
-      <div className="w-full h-40 sm:h-48 relative flex items-center justify-center p-4 md:p-6">
+      <div className="w-full h-32 sm:h-36 relative flex items-center justify-center p-3">
         <div className="relative w-full h-full transform group-hover:scale-105 transition-transform duration-500">
           <Image src={service.image} alt={service.title} fill className="object-contain" />
         </div>
       </div>
-      <CardHeader className="p-4 md:p-8 pb-2 md:pb-4">
-        <CardTitle className="text-base md:text-xl font-bold text-zinc-900 leading-tight">{service.title}</CardTitle>
-        <CardDescription className="text-zinc-600 leading-relaxed text-xs md:text-base pt-1 md:pt-2 line-clamp-2 sm:line-clamp-none">
+      <CardHeader className="p-3 md:p-4 pb-0 md:pb-1">
+        <CardTitle className="text-base md:text-xl font-bold text-primary leading-tight">{service.title}</CardTitle>
+        <CardDescription className="text-zinc-600 leading-relaxed text-xs md:text-sm pt-1 md:pt-2 line-clamp-2">
           {service.description}
         </CardDescription>
       </CardHeader>
-      <CardContent className="p-4 md:p-8 pt-0 flex-grow flex flex-col justify-end">
-        <div className="border-t border-zinc-100 pt-3 md:pt-6 mt-1 md:mt-2">
-          <ul className="space-y-1.5 md:space-y-3 hidden sm:block">
+      <CardContent className="p-3 md:p-4 pt-1 md:pt-2 flex-grow flex flex-col justify-start">
+        {/* Features section stays at top right under description */}
+        <div className="pt-1 md:pt-2">
+          <ul className="space-y-1.5 md:space-y-2 hidden sm:block">
             {service.features.map((feature: string, i: number) => (
               <li key={i} className="flex items-start text-xs md:text-sm text-zinc-700 font-medium">
                 <div className="w-1.5 h-1.5 rounded-sm bg-primary mr-2 md:mr-3 mt-1.5 shrink-0" />
@@ -142,7 +143,24 @@ function ServiceCard({ service }: { service: any }) {
               </li>
             ))}
           </ul>
-          <div className="mt-3 md:mt-8">
+        </div>
+          
+        {/* Integrations and link get pushed to the absolute bottom */}
+        <div className="mt-auto">
+          {service.brandLogos && service.brandLogos.length > 0 && (
+            <div className="mt-2 pt-2 border-t border-zinc-100">
+              <p className="text-[10px] md:text-[11px] font-bold text-zinc-400 uppercase tracking-wider mb-3">Integrations & Tech</p>
+              <div className="flex flex-wrap items-center gap-3 md:gap-4">
+                {service.brandLogos.map((logo: any, idx: number) => (
+                  <div key={idx} className="relative h-8 md:h-10 w-auto drop-shadow-sm hover:scale-105 transition-transform duration-300" title={logo.name}>
+                    <Image src={logo.url} alt={logo.name} width={120} height={28} className="object-contain h-full w-auto" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          <div className="mt-2 pt-2 border-t border-zinc-100">
             <Link href={`/services/${service.slug}`} className="inline-flex items-center text-xs md:text-sm font-bold text-primary hover:text-primary transition-colors group/link">
               Explore <span className="hidden sm:inline">&nbsp;Service</span> <ArrowRight className="ml-1 md:ml-2 h-3 w-3 md:h-4 md:w-4 transform group-hover/link:translate-x-1 transition-transform" />
             </Link>

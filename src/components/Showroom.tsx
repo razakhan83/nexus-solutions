@@ -126,7 +126,7 @@ export function Showroom() {
 
                         <Button 
                           variant="outline" 
-                          className="w-full rounded-xl border-zinc-200 text-zinc-700 hover:text-primary-foreground hover:bg-primary hover:border-primary hover:shadow-lg transition-all h-12 font-semibold text-base mt-auto" 
+                          className="w-full mt-auto" 
                           render={client.link !== "#" ? <Link href={client.link} /> : <a href={client.link} />} 
                           nativeButton={false}
                         >

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { DM_Sans, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
+import { ContactModal } from "@/components/ContactModal";
+import { Suspense } from "react";
 
 const sans = DM_Sans({
   variable: "--font-sans",
@@ -43,6 +45,9 @@ export default function RootLayout({
           </svg>
         </div>
         {children}
+        <Suspense fallback={null}>
+          <ContactModal />
+        </Suspense>
       </body>
     </html>
   );

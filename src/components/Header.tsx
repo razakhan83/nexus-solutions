@@ -68,7 +68,7 @@ export function Header() {
 
   return (
     <>
-      <header className={`fixed top-0 z-50 w-full transition-all duration-500 ${scrolled ? 'bg-background/95 backdrop-blur-sm border-b border-border/40 py-2' : 'bg-transparent text-white py-6'}`}>
+      <header className={`fixed top-0 z-50 w-full transition-all duration-200 ${scrolled ? 'bg-background/95 backdrop-blur-sm border-b border-border/40 py-2' : 'bg-transparent text-white py-6'}`}>
         <div className="mx-auto flex items-center justify-between px-6 lg:px-10 max-w-7xl">
           
           {/* Logo */}
@@ -96,7 +96,7 @@ export function Header() {
               </Link>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}>
-              <Link href="/#contact" onClick={() => handleLinkClick("/#contact")} className={getLinkClass("/#contact")}>
+              <Link href="?contact=true" scroll={false} onClick={() => handleLinkClick("?contact=true")} className={getLinkClass("?contact=true")}>
                 CONTACT
               </Link>
             </motion.div>
@@ -105,10 +105,11 @@ export function Header() {
           {/* Desktop CTA */}
           <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.5 }} className="hidden md:flex items-center">
             <Button 
-              render={<a href="#contact" />} 
+              render={<Link href="?contact=true" scroll={false} />} 
               nativeButton={false}
+              size="sm"
               variant={!scrolled ? "outline" : "default"} 
-              className={`rounded-lg px-8 py-5 text-xs tracking-wider font-bold shadow-md hover:shadow-lg transition-all duration-300 ${!scrolled ? "bg-white text-primary border-white hover:bg-white/90" : ""}`}
+              className={`${!scrolled ? "bg-white text-primary hover:bg-white/90 border-0" : ""}`}
             >
               ENGAGE
             </Button>
@@ -161,7 +162,7 @@ export function Header() {
               </div>
               <div className="overflow-hidden">
                 <motion.div initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.25, duration: 0.5 }}>
-                  <Link onClick={() => handleLinkClick("/#contact")} href="/#contact" className={getLinkClass("/#contact", true)}>
+                  <Link onClick={() => handleLinkClick("?contact=true")} href="?contact=true" scroll={false} className={getLinkClass("?contact=true", true)}>
                     CONTACT
                   </Link>
                 </motion.div>
@@ -174,7 +175,7 @@ export function Header() {
               transition={{ delay: 0.4, duration: 0.5 }}
               className="mt-12 w-full"
             >
-              <Button render={<a href="/#contact" />} onClick={() => setIsMobileMenuOpen(false)} nativeButton={false} variant="default" className="w-full text-sm font-bold tracking-wider rounded-lg h-14">
+              <Button render={<Link href="?contact=true" scroll={false} />} onClick={() => setIsMobileMenuOpen(false)} nativeButton={false} variant="default" className="w-full">
                 ENGAGE
               </Button>
             </motion.div>

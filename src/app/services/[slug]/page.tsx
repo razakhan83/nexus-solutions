@@ -36,24 +36,38 @@ export default function ServicePage({ params }: { params: Promise<{ slug: string
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-xs sm:text-sm font-semibold tracking-wide uppercase mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-semibold tracking-wide uppercase mb-6">
                 <span>Service Details</span>
               </div>
-              <h1 className="text-4xl font-heading font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl mb-6 leading-[1.1]">
+              <h1 className="text-4xl font-heading font-extrabold tracking-tight text-zinc-900 sm:text-5xl lg:text-6xl mb-6 leading-[1.1]">
                 {service.title}
               </h1>
-              <p className="text-lg sm:text-xl leading-relaxed text-white/90 mb-8 max-w-2xl font-medium">
+              <p className="text-lg sm:text-xl leading-relaxed text-zinc-600 mb-8 max-w-2xl font-medium">
                 {service.longDescription}
               </p>
+
+              {service.brandLogos && service.brandLogos.length > 0 && (
+                <div className="mb-10">
+                  <p className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider mb-4">Integrations & Technologies</p>
+                  <div className="flex flex-wrap items-center gap-5">
+                    {service.brandLogos.map((logo: any, idx: number) => (
+                      <div key={idx} className="relative h-8 md:h-10 w-auto drop-shadow-sm hover:scale-105 transition-transform duration-300" title={logo.name}>
+                        <Image src={logo.url} alt={logo.name} width={120} height={40} className="object-contain h-full w-auto" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <div className="flex flex-wrap items-center gap-4">
-                <Button variant="default" className="bg-white hover:bg-white/90 text-primary rounded-full h-14 px-8 text-base font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all" render={<a href="/#contact" />} nativeButton={false}>
+                <Button variant="default" render={<Link href="?contact=true" scroll={false} />} nativeButton={false}>
                   Start a Project <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </div>
             </motion.div>
 
             <motion.div 
-              className="lg:w-1/2 relative h-[350px] sm:h-[450px] lg:h-[550px] w-full"
+              className="lg:w-1/2 relative h-[250px] sm:h-[350px] lg:h-[450px] w-full"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
@@ -80,12 +94,13 @@ export default function ServicePage({ params }: { params: Promise<{ slug: string
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="bg-white p-6 sm:p-8 rounded-3xl border border-zinc-200 shadow-sm hover:shadow-md transition-shadow"
+                  className="group bg-white p-6 sm:p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-xl hover:border-primary/30 transition-all duration-300"
                 >
-                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
-                    <CheckCircle2 className="w-6 h-6 text-primary" />
+                  <div className="flex items-center mb-5 h-4">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary/40 group-hover:bg-primary transition-all duration-300" />
+                    <div className="w-4 group-hover:w-8 h-[1px] bg-primary/20 group-hover:bg-primary/50 ml-3 transition-all duration-300" />
                   </div>
-                  <p className="text-zinc-800 font-semibold text-lg leading-relaxed">{feature}</p>
+                  <p className="text-zinc-800 font-semibold text-lg leading-relaxed group-hover:text-primary transition-colors duration-300">{feature}</p>
                 </motion.div>
               ))}
             </div>
@@ -119,18 +134,18 @@ export default function ServicePage({ params }: { params: Promise<{ slug: string
                   <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-zinc-900 mb-6 leading-tight">{feature.title}</h3>
                   <p className="text-lg sm:text-xl text-zinc-600 leading-relaxed max-w-xl">{feature.description}</p>
                   <ul className="mt-8 space-y-3">
-                     <li className="flex items-center text-zinc-700 font-medium">
-                       <ChevronRight className="w-5 h-5 text-primary mr-2" /> Precision driven results.
-                     </li>
-                     <li className="flex items-center text-zinc-700 font-medium">
-                       <ChevronRight className="w-5 h-5 text-primary mr-2" /> Engineered for scale.
-                     </li>
+                    {feature.bullets?.map((bullet, bIdx) => (
+                      <li key={bIdx} className="flex items-center text-zinc-700 font-medium text-base sm:text-lg">
+                        <ChevronRight className="w-5 h-5 text-primary mr-2 flex-shrink-0" /> 
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
                   </ul>
                 </motion.div>
                 
                 {/* Illustration Image */}
                 <motion.div 
-                  className="lg:w-1/2 relative h-[300px] sm:h-[400px] lg:h-[500px] w-full group"
+                  className="lg:w-1/2 relative h-[250px] sm:h-[300px] lg:h-[400px] w-full group"
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, margin: "-100px" }}
@@ -157,7 +172,7 @@ export default function ServicePage({ params }: { params: Promise<{ slug: string
           <p className="text-xl sm:text-2xl leading-relaxed text-zinc-400 mb-12 max-w-2xl mx-auto">
             Let's discuss how our {service.title} expertise can drive measurable growth for your enterprise.
           </p>
-          <Button variant="default" className="bg-primary hover:bg-primary/90 text-white rounded-full h-16 px-12 text-lg font-bold shadow-2xl hover:-translate-y-1 transition-all" render={<a href="/#contact" />} nativeButton={false}>
+          <Button variant="default" size="lg" render={<Link href="?contact=true" scroll={false} />} nativeButton={false}>
             Start a Conversation
           </Button>
         </div>

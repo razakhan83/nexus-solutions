@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { MonitorPlay, LineChart, ShieldCheck } from "lucide-react";
+import Link from "next/link";
 
 export function WhoWeAre() {
   return (
@@ -47,9 +49,9 @@ export function WhoWeAre() {
               We are a team of experienced developers, creators, and marketers who help businesses grow online. Instead of templates, we build fast, custom websites, set up secure checkouts, and run smart ad campaigns that turn visitors into customers.
             </p>
             <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: 0.6 }} className="mt-6 lg:mt-8">
-              <a href="#contact" className="inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/90 h-12 lg:h-14 px-8 tracking-wider shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+              <Button render={<Link href="?contact=true" scroll={false} />} nativeButton={false}>
                 LET'S TALK <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-              </a>
+              </Button>
             </motion.div>
           </motion.div>
         </div>
@@ -60,7 +62,7 @@ export function WhoWeAre() {
             <div className="mb-5 text-muted-foreground group-hover:text-primary transition-colors duration-500">
               <MonitorPlay className="w-6 h-6 stroke-[1.5]" />
             </div>
-            <h4 className="text-foreground font-heading font-semibold text-lg mb-3 tracking-tight">Complete Digital Setup</h4>
+            <h4 className="text-primary font-heading font-semibold text-lg mb-3 tracking-tight">Complete Digital Setup</h4>
             <p className="text-sm text-muted-foreground leading-relaxed">From professional product shoots to complex web development and running ads, we manage your entire digital presence in-house.</p>
           </motion.div>
           
@@ -68,7 +70,7 @@ export function WhoWeAre() {
             <div className="mb-5 text-muted-foreground group-hover:text-primary transition-colors duration-500">
               <LineChart className="w-6 h-6 stroke-[1.5]" />
             </div>
-            <h4 className="text-foreground font-heading font-semibold text-lg mb-3 tracking-tight">Results Over Guesswork</h4>
+            <h4 className="text-primary font-heading font-semibold text-lg mb-3 tracking-tight">Results Over Guesswork</h4>
             <p className="text-sm text-muted-foreground leading-relaxed">Every website we build and ad dollar we spend is fully tracked and optimized for the absolute best return on investment.</p>
           </motion.div>
           
@@ -76,7 +78,7 @@ export function WhoWeAre() {
             <div className="mb-5 text-muted-foreground group-hover:text-primary transition-colors duration-500">
               <ShieldCheck className="w-6 h-6 stroke-[1.5]" />
             </div>
-            <h4 className="text-foreground font-heading font-semibold text-lg mb-3 tracking-tight">Top Standards</h4>
+            <h4 className="text-primary font-heading font-semibold text-lg mb-3 tracking-tight">Top Standards</h4>
             <p className="text-sm text-muted-foreground leading-relaxed">Based in Pakistan, we mix international quality development with deep local market experience to give your brand an edge.</p>
           </motion.div>
         </div>

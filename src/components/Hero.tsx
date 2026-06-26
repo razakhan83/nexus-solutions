@@ -134,22 +134,22 @@ export function Hero() {
               </p>
 
               <div className="flex flex-col sm:flex-row items-center gap-4 pt-4 lg:pt-6 w-full lg:w-auto">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
+                <motion.div className="w-full sm:w-auto">
                   <Button 
                     variant="default"
-                    render={<a href="#contact" />} 
+                    render={<Link href="?contact=true" scroll={false} />} 
                     nativeButton={false} 
-                    className="w-full sm:w-auto font-bold text-sm lg:text-base h-12 lg:h-14 px-8 lg:px-10 transition-all duration-300 rounded-xl shadow-lg hover:shadow-xl"
+                    className="w-full sm:w-auto"
                   >
                     Start Your Project
                   </Button>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
+                <motion.div className="w-full sm:w-auto">
                   <Button 
                     variant="outline"
                     render={<Link href="/portfolio" />} 
                     nativeButton={false} 
-                    className="w-full sm:w-auto font-semibold text-sm lg:text-base h-12 lg:h-14 px-8 lg:px-10 bg-white/50 dark:bg-transparent backdrop-blur-sm transition-all duration-300 rounded-xl shadow-sm hover:shadow-md border-border/50 hover:bg-slate-50 dark:hover:bg-slate-900"
+                    className="w-full sm:w-auto bg-white/50 dark:bg-transparent backdrop-blur-sm"
                   >
                     View Portfolio
                   </Button>

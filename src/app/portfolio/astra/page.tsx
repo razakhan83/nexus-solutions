@@ -183,7 +183,7 @@ export default function AstraCaseStudy() {
           <p className="text-xl leading-relaxed text-primary/20 mb-10">
             Our engineering team is ready to scale your platform and eliminate conversion bottlenecks.
           </p>
-          <Link href="/#contact" className="inline-flex items-center justify-center bg-white hover:bg-zinc-100 text-primary rounded-full h-14 px-10 text-lg font-bold shadow-lg hover:-translate-y-1 transition-all">
+          <Link href="?contact=true" scroll={false} className="inline-flex items-center justify-center bg-white hover:bg-zinc-100 text-primary rounded-full h-14 px-10 text-lg font-bold shadow-lg hover:-translate-y-1 transition-all">
             Contact Sales
           </Link>
         </div>
