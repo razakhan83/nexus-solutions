@@ -34,7 +34,7 @@ const faqs = [
 
 export function Faq() {
   return (
-    <section className="bg-background py-16 sm:py-24 border-t border-border/40 overflow-hidden">
+    <section className="py-16 sm:py-24 bg-white relative overflow-hidden">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-start max-w-7xl mx-auto">

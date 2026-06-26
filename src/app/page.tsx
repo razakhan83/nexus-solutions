@@ -14,7 +14,7 @@ export default function Home() {
       <Header />
       <Hero />
       <WhoWeAre />
-      <Services />
+      <Services showViewAll={true} />
       <Showroom />
       <Reviews />
       <Faq />

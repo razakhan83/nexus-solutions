@@ -93,7 +93,7 @@ export default function PortfolioPage() {
     <main className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
       <Header />
       
-      <section className="pt-8 lg:pt-12 pb-8 sm:pb-12 bg-muted/10 border-b border-border/40">
+      <section className="pt-24 lg:pt-32 pb-8 sm:pb-12 bg-transparent relative z-10">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -104,10 +104,10 @@ export default function PortfolioPage() {
             <div className="relative w-full max-w-[200px] sm:max-w-[250px] h-[120px] sm:h-[160px] mb-6 sm:mb-8">
               <Image src="/undraw_website-setup_o2zf.svg" alt="Our Portfolio" fill className="object-contain" priority />
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-heading font-bold tracking-tight text-foreground mb-4 sm:mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-heading font-bold tracking-tight text-white mb-4 sm:mb-6">
               Our Portfolio
             </h1>
-            <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-white/80 max-w-2xl mx-auto">
               Explore how we have engineered scalable digital infrastructure and high-growth campaigns for enterprises across the globe.
             </p>
           </motion.div>

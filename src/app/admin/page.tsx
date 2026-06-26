@@ -107,13 +107,13 @@ export default function AdminPage() {
   };
 
   return (
-    <main className="min-h-screen bg-zinc-50 text-zinc-950">
+    <main className="min-h-screen bg-transparent relative z-10 text-zinc-950">
       <Header />
       
       <div className="pt-32 pb-24 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mb-12">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-900 mb-2">Portfolio Admin</h1>
-          <p className="text-zinc-600">Manage the Case Studies shown on your homepage.</p>
+          <h1 className="text-4xl font-bold tracking-tight text-white mb-2">Portfolio Admin</h1>
+          <p className="text-white/80 font-medium">Manage the Case Studies shown on your homepage.</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">

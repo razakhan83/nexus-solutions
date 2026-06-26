@@ -3,8 +3,23 @@ import { Mail, Phone, MapPin } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-zinc-50 text-zinc-900 py-16 border-t border-zinc-200">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <footer className="relative bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 pt-16 pb-12 mt-10">
+      {/* Top Wave Divider */}
+      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none -translate-y-[99%]">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 1440 320" 
+          preserveAspectRatio="none"
+          className="relative block w-[calc(100%+1.3px)] h-[60px] lg:h-[100px]"
+        >
+          <path 
+            d="M0,320 L1440,320 L1440,200 C1080,100 360,300 0,200 Z" 
+            className="fill-zinc-50 dark:fill-zinc-900"
+          ></path>
+        </svg>
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           
           {/* About Us */}

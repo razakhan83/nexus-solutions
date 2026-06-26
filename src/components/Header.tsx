@@ -11,11 +11,13 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const [activeLink, setActiveLink] = useState("");
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     setActiveLink(pathname + window.location.hash);
     const handleHashChange = () => setActiveLink(window.location.pathname + window.location.hash);
     const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
       if (pathname === "/") {
         const contactEl = document.getElementById("contact");
         if (contactEl) {
@@ -46,50 +48,69 @@ export function Header() {
 
   const getLinkClass = (href: string, isMobile = false) => {
     const isActive = activeLink === href || (href === "/" && activeLink === "");
-    const baseSize = isMobile ? "text-3xl md:text-5xl font-heading tracking-tight block w-full py-4" : "text-xs uppercase tracking-widest";
+    const baseSize = isMobile ? "text-3xl md:text-5xl font-heading tracking-tight block w-full py-4" : "text-[15px] font-medium tracking-wide px-2";
+    
+    if (isMobile) {
+      return `${baseSize} transition-all duration-300 relative group overflow-hidden ${
+        isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+      }`;
+    }
+    
+    // The purple wave is now global, so text should always be white when not scrolled
+    const useWhiteText = !scrolled;
+
     return `${baseSize} transition-all duration-300 relative group overflow-hidden ${
-      isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+      isActive 
+        ? (useWhiteText ? "text-white" : "text-primary") 
+        : (useWhiteText ? "text-white/80 hover:text-white" : "text-foreground/70 hover:text-foreground")
     }`;
   };
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur-sm border-b border-border/40 text-foreground transition-all duration-500">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
+      <header className={`fixed top-0 z-50 w-full transition-all duration-500 ${scrolled ? 'bg-background/95 backdrop-blur-sm border-b border-border/40 py-2' : 'bg-transparent text-white py-6'}`}>
+        <div className="mx-auto flex items-center justify-between px-6 lg:px-10 max-w-7xl">
           
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <span className="text-xl font-heading font-bold tracking-tighter uppercase">KG.</span>
+            <span className={`text-2xl font-bold tracking-widest uppercase ${!scrolled ? "text-white" : "text-foreground"}`}>
+              LOGOTYPE
+            </span>
           </div>
           
           {/* Desktop Nav */}
-          <nav className="hidden md:flex gap-12 items-center">
+          <nav className="hidden md:flex gap-8 lg:gap-10 items-center">
             <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
               <Link href="/" onClick={() => handleLinkClick("/")} className={getLinkClass("/")}>
-                Home
+                HOME
               </Link>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
               <Link href="/services" onClick={() => handleLinkClick("/services")} className={getLinkClass("/services")}>
-                Services
+                SERVICES
               </Link>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }}>
               <Link href="/portfolio" onClick={() => handleLinkClick("/portfolio")} className={getLinkClass("/portfolio")}>
-                Portfolio
+                PORTFOLIO
               </Link>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}>
               <Link href="/#contact" onClick={() => handleLinkClick("/#contact")} className={getLinkClass("/#contact")}>
-                Contact
+                CONTACT
               </Link>
             </motion.div>
           </nav>
 
           {/* Desktop CTA */}
           <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.5 }} className="hidden md:flex items-center">
-            <Button render={<a href="#contact" />} nativeButton={false} variant="default" className="uppercase tracking-widest text-xs px-8 min-w-[140px]">
-              Engage
+            <Button 
+              render={<a href="#contact" />} 
+              nativeButton={false}
+              variant={!scrolled ? "outline" : "default"} 
+              className={`rounded-lg px-8 py-5 text-xs tracking-wider font-bold shadow-md hover:shadow-lg transition-all duration-300 ${!scrolled ? "bg-white text-primary border-white hover:bg-white/90" : ""}`}
+            >
+              ENGAGE
             </Button>
           </motion.div>
 
@@ -97,10 +118,10 @@ export function Header() {
           <div className="md:hidden flex items-center z-50">
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="flex items-center justify-center size-12 text-foreground"
+              className="flex items-center justify-center size-12"
               aria-label="Toggle Menu"
             >
-              {isMobileMenuOpen ? <X strokeWidth={1} className="size-8" /> : <Menu strokeWidth={1} className="size-8" />}
+              {isMobileMenuOpen ? <X strokeWidth={1.5} className={!scrolled ? "text-white" : "text-foreground"} /> : <Menu strokeWidth={1.5} className={!scrolled ? "text-white" : "text-foreground"} />}
             </button>
           </div>
         </div>
@@ -120,28 +141,28 @@ export function Header() {
               <div className="overflow-hidden">
                 <motion.div initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.1, duration: 0.5 }}>
                   <Link onClick={() => handleLinkClick("/")} href="/" className={getLinkClass("/", true)}>
-                    Home
+                    HOME
                   </Link>
                 </motion.div>
               </div>
               <div className="overflow-hidden">
                 <motion.div initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.15, duration: 0.5 }}>
                   <Link onClick={() => handleLinkClick("/services")} href="/services" className={getLinkClass("/services", true)}>
-                    Services
+                    SERVICES
                   </Link>
                 </motion.div>
               </div>
               <div className="overflow-hidden">
                 <motion.div initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2, duration: 0.5 }}>
                   <Link onClick={() => handleLinkClick("/portfolio")} href="/portfolio" className={getLinkClass("/portfolio", true)}>
-                    Portfolio
+                    PORTFOLIO
                   </Link>
                 </motion.div>
               </div>
               <div className="overflow-hidden">
                 <motion.div initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.25, duration: 0.5 }}>
                   <Link onClick={() => handleLinkClick("/#contact")} href="/#contact" className={getLinkClass("/#contact", true)}>
-                    Contact
+                    CONTACT
                   </Link>
                 </motion.div>
               </div>
@@ -153,8 +174,8 @@ export function Header() {
               transition={{ delay: 0.4, duration: 0.5 }}
               className="mt-12 w-full"
             >
-              <Button render={<a href="/#contact" />} onClick={() => setIsMobileMenuOpen(false)} nativeButton={false} className="w-full text-sm uppercase tracking-widest">
-                Start a Project
+              <Button render={<a href="/#contact" />} onClick={() => setIsMobileMenuOpen(false)} nativeButton={false} variant="default" className="w-full text-sm font-bold tracking-wider rounded-lg h-14">
+                ENGAGE
               </Button>
             </motion.div>
           </motion.div>

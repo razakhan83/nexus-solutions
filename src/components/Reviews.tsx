@@ -53,7 +53,7 @@ const reviews = [
 
 export function Reviews() {
   return (
-    <section className="bg-background py-16 sm:py-24 relative overflow-hidden border-t border-border/40">
+    <section id="reviews" className="py-16 sm:py-24 bg-background relative overflow-hidden border-t border-border/40">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
         
         {/* Top Header Grid Layout */}

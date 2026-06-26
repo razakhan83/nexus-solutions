@@ -47,7 +47,7 @@ export function Showroom() {
   }
 
   return (
-    <section id="showroom" className="bg-white py-24 sm:py-32 relative overflow-hidden border-t border-zinc-200">
+    <section id="showroom" className="bg-white py-16 sm:py-24 relative overflow-hidden border-t border-zinc-200">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
         
         {/* Header Section */}
